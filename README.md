@@ -14,7 +14,7 @@ how to run the work end to end.
 In Claude Code:
 
 ```
-/plugin marketplace add atmosphere-ai/advisorseo-claude-plugin
+/plugin marketplace add advisorppc-org/advisorseo-claude-plugin
 /plugin install advisorseo@advisorseo
 ```
 
