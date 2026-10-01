@@ -1,7 +1,7 @@
 {
   "name": "advisorseo",
-  "version": "0.1.0",
-  "description": "AdvisorSEO is an AI manager that gets SEO and lead work done. Plan content from a business profile and real keywords, draft and publish articles to WordPress, and work the lead pipeline — all through the AdvisorSEO connector, with every write previewed before it happens.",
+  "version": "0.1.1",
+  "description": "Review stored site, content, and lead records with AdvisorSEO and prepare local draft proposals. Publishing and trusted write approval remain unverified for this rollout.",
   "author": {
     "name": "AdvisorPPC",
     "email": "support@advisorseo.ai",
@@ -10,5 +10,11 @@
   "homepage": "https://advisorseo.ai",
   "repository": "https://github.com/advisorppc-org/advisorseo-claude-plugin",
   "license": "MIT",
-  "keywords": ["seo", "content", "wordpress", "leads", "advisorseo"]
+  "keywords": [
+    "seo",
+    "content",
+    "wordpress",
+    "leads",
+    "advisorseo"
+  ]
 }

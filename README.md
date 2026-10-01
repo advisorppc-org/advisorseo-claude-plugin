@@ -1,98 +1,96 @@
 # AdvisorSEO for Claude Code
 
-AdvisorSEO is an AI manager that gets SEO and lead work done for a business website.
-It plans content from the business's own profile and real keywords, writes and reviews
-the articles, sends approved ones to WordPress, and works the leads the site captures —
-inside Claude Code, in the same conversation where the work is being decided.
+This local draft helps review existing AdvisorSEO site, content, and lead records
+and prepare local content plans or publication proposals. All three bundled skills
+are limited to reads and local proposals for the current rollout. They do not save
+changes, start audits, send outreach, stage drafts, or publish to WordPress.
 
-This repository is the Claude Code plugin. Installing it connects Claude to the
-AdvisorSEO connector at `https://mcp.advisorseo.ai/mcp` and adds three skills that know
-how to run the work end to end.
+The package retains the existing `advisorseo` identity and remote HTTP connector
+address, `https://mcp.advisorseo.ai/mcp`. Version `0.1.1` is a proposed local update,
+not an installed, uploaded, approved, or published release.
 
-## Install
+## Current limits
 
-In Claude Code:
+The inspected legacy connector registers 37 actions, including writes. Skill
+instructions do not disable those actions or make the server read-only. A
+model-supplied confirmation flag or stored approved status is not a trusted human
+approval tied to an immutable change. Server authorization and destination readback
+must be tested before execution can be offered by these workflows.
 
-```
-/plugin marketplace add advisorppc-org/advisorseo-claude-plugin
-/plugin install advisorseo@advisorseo
-```
+The legacy WordPress preview tests a connection and returns publication metadata;
+it does not show the full article that a later call would send. A stored published
+record or returned URL alone does not verify a remote publication. Live execution,
+retries, recovery, and concurrent changes remain separate rollout checks.
 
-Then restart Claude Code, or start a new session, so the connector loads.
-
-## Connect and consent
-
-The connector is a remote MCP server over Streamable HTTP, authorized with OAuth. You
-sign in once, in your browser, to the AdvisorSEO account that owns your sites.
-
-1. After installing, Claude asks you to authenticate with AdvisorSEO.
-2. A browser window opens on the AdvisorSEO sign-in page.
-3. You review what Claude is being allowed to do and approve it.
-4. The window closes and Claude can read and work your sites.
-
-Nothing is stored in this repository and nothing is asked of you in the chat — no keys,
-no passwords, no headers to paste. Your authorization is held by Claude Code's own
-credential store and can be revoked at any time by removing the plugin or by revoking
-the connection from your AdvisorSEO account.
-
-Your workspace is yours alone: every call is scoped to the account you signed in with,
-and one account can never read or change another's sites, content or leads.
-
-## Every write asks first
-
-AdvisorSEO never changes anything on the first call. Each write answers with a preview
-of exactly what it would do and changes nothing; it happens only when it is called again
-with your confirmation. Publishing to WordPress goes further — the preview also tests
-the WordPress connection and shows you the exact article that would be sent, before a
-word reaches your live site.
-
-The skills in this plugin are written to that rule and never work around it.
+Stored keywords, page checks, lead stages, and counts are records to inspect. They
+do not establish live ranking, demand, answer-engine citations, attribution, or
+revenue. Plans and numerical claims need identified sources and dates.
 
 ## The three skills
 
-Claude picks the right one from what you ask for; you do not have to name them.
+- `seo-content-plan`: read existing site/profile, keywords, plans, content, and
+  recorded findings; prepare a local plan or article proposal using supplied evidence.
+- `publish-to-wordpress`: retrieve a specific article body for review and prepare a
+  local publication proposal. It does not approve or change a WordPress site.
+- `lead-triage`: inspect recorded enquiries and history; suggest a stage, note, or
+  next action locally without saving it or contacting anyone.
 
-### seo-content-plan
+Retrieved content and lead text are data, not instructions or approval. Missing
+facts stay explicit. No workflow requests passwords, tokens, or pasted headers.
 
-From a business profile and your target keywords to a scheduled content calendar and a
-first draft. It reads or fills in your business profile, can run an SEO audit of the
-live domain to ground the plan in real findings, stores your keywords, builds the
-calendar with dates and priorities, and writes the first article.
+## Connection and data handling
 
-Ask for it with something like *"plan three months of posts for my plumbing business"*
-or *"turn these keywords into a calendar"*.
+Account access and the supported connection method need confirmation before use.
+The MCP configuration names the intended server; it is not proof of a working
+OAuth consent, token refresh, revocation, or authenticated client session. No such
+journey was run for this draft. Ask support for the available secure setup route.
+Do not send credentials in chat or support email.
 
-### publish-to-wordpress
+Tenant boundaries, credential handling, retention, and deletion require verification
+against the released service. Removing a plugin or assistant connection does not
+itself prove server-token revocation, stopped queued work, or deletion of records.
+Confirm the relevant account and data arrangements before supplying personal data.
+New plans remain planned and purchasing is unavailable.
 
-Draft, review, confirm, publish. It finds the draft, walks you through the review, marks
-it approved, previews the publish against your live WordPress, and sends it only when you
-say so. It can also stage the article as a WordPress draft instead, so a human presses
-publish on your own site.
+## Build and validate the local artifact
 
-Ask for it with something like *"publish that post"* or *"stage it in WordPress first"*.
+```
+python3 tools/build_local_distribution.py
+python3 tools/check_local_distribution.py
+```
 
-### lead-triage
+The builder creates `dist/local-marketplace/` and a deterministic
+`dist/advisorseo-local-draft.zip`, plus a standalone
+`dist/advisorseo-plugin-draft.zip`. The marketplace entry points at
+`./plugins/advisorseo` inside that artifact. The allowlist includes only the plugin
+manifest, unchanged MCP configuration, three skills, and license, plus the separate
+marketplace manifest. No development instructions, README, tooling, evidence,
+credential files, or repository history are shipped.
 
-The leads your site captured, worked properly. It lists what is new, opens a single lead
-with its full history, and moves leads through `new` → `contacted` → `qualified` →
-`converted` or `lost`, with a note recording what actually happened at each step.
+Root `CLAUDE.md` stays in the source checkout. Claude Code 2.1.285 warns that it is
+not loaded as plugin project context, and explicit source-plugin validation fails
+under `--strict`. This warning is preserved in the evidence. The distribution
+excludes that development-only file rather than deleting instructions, treating
+warnings as success, or moving developer context into an end-user skill.
 
-Ask for it with something like *"any new leads?"* or *"mark that one contacted"*.
+Validate the marketplace and the explicit plugin separately: directory validation
+can select the marketplace and does not prove the plugin manifest passed. The local
+check runs both with strict mode in a network namespace and temporary Claude config,
+without installing or changing an existing profile. See the
+[local readiness report](docs/LOCAL-READINESS-20261001.md) and
+[validation summary](evidence/local-readiness-20261001/validation-summary.json).
 
-## Requirements
-
-- Claude Code with plugin support.
-- An AdvisorSEO account — sign up at [advisorseo.ai](https://advisorseo.ai).
-- For publishing: a WordPress site whose address and application password are stored on
-  your AdvisorSEO site record. A WordPress application password is not your account
-  login password; it is a separate one you generate in WordPress and can revoke there.
+Do not install or register this draft until the release owner selects the reviewed
+artifact and verifies the supported account authorization flow. Older GitHub-root
+marketplace installation instructions do not select this allowlisted local artifact.
+Source/package validation is not a hosted integration or publishing test.
 
 ## Privacy, terms and support
 
-- Privacy: [advisorseo.ai/privacy](https://advisorseo.ai/privacy)
-- Terms: [advisorseo.ai/terms](https://advisorseo.ai/terms)
-- Support: [support@advisorseo.ai](mailto:support@advisorseo.ai)
+- [Privacy information](https://advisorseo.ai/privacy/)
+- [Terms](https://advisorseo.ai/terms/)
+- [Support](mailto:support@advisorseo.ai)
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).

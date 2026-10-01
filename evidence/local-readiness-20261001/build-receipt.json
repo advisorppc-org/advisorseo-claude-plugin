@@ -1,0 +1,35 @@
+{
+  "status": "local draft; not installed or released",
+  "plugin_name": "advisorseo",
+  "version": "0.1.1",
+  "plugin_allowlist": [
+    ".claude-plugin/plugin.json",
+    ".mcp.json",
+    "LICENSE",
+    "skills/seo-content-plan/SKILL.md",
+    "skills/publish-to-wordpress/SKILL.md",
+    "skills/lead-triage/SKILL.md"
+  ],
+  "source_sha256": {
+    ".claude-plugin/plugin.json": "6d89c17ab0589e559e2c6a33090e96cc2e601bd2e342ff509b99a2e95670875e",
+    ".mcp.json": "ff479a6cfd475e6e3fa4fe72f796557b012a9098bad6245bbf956f00180b4169",
+    "LICENSE": "f229fd09eb6d6241ddcb3458ec33c920ecef01c2c269b137cf741c10632640dd",
+    "skills/seo-content-plan/SKILL.md": "b69361bd67dea8e45252a662e63f3d87fc71460c5a69becca9140e75ca0f4162",
+    "skills/publish-to-wordpress/SKILL.md": "60cebe735dbb4bc442a74af1d1c5ea458839faad58e4147a06dbaffec088abe2",
+    "skills/lead-triage/SKILL.md": "15620d865aeb3dad49a56a0db3e7577663387675df79db4c5175b05409dfacc6",
+    ".claude-plugin/marketplace.json": "8d82cac6403c90e9e343e5bf7c9b265f921dff022dd385ee3af87ac8a3a75245"
+  },
+  "artifact_sha256": {
+    ".claude-plugin/marketplace.json": "167f6e199f4fea8c47dc617b18600fce67a520e5e197dee821f0cbc306cad3f7",
+    "plugins/advisorseo/.claude-plugin/plugin.json": "6d89c17ab0589e559e2c6a33090e96cc2e601bd2e342ff509b99a2e95670875e",
+    "plugins/advisorseo/.mcp.json": "ff479a6cfd475e6e3fa4fe72f796557b012a9098bad6245bbf956f00180b4169",
+    "plugins/advisorseo/LICENSE": "f229fd09eb6d6241ddcb3458ec33c920ecef01c2c269b137cf741c10632640dd",
+    "plugins/advisorseo/skills/lead-triage/SKILL.md": "15620d865aeb3dad49a56a0db3e7577663387675df79db4c5175b05409dfacc6",
+    "plugins/advisorseo/skills/publish-to-wordpress/SKILL.md": "60cebe735dbb4bc442a74af1d1c5ea458839faad58e4147a06dbaffec088abe2",
+    "plugins/advisorseo/skills/seo-content-plan/SKILL.md": "b69361bd67dea8e45252a662e63f3d87fc71460c5a69becca9140e75ca0f4162"
+  },
+  "archive_sha256": {
+    "advisorseo-local-draft.zip": "3a6ffbcdc0ffcd0816047ab1c04fab38d543a606a48fe961b2bc2d2c95e714e5",
+    "advisorseo-plugin-draft.zip": "c131c34527761f9e5c1eee92bcf2fb57248d003fe5afc20bb0215a1f3c69d4fc"
+  }
+}

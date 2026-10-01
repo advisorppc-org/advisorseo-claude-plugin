@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "strict": true,
+  "target": "/home/advisorppc/AdvisorSEO/repos/advisorseo-claude-plugin/dist/local-marketplace/plugins/advisorseo/.claude-plugin/plugin.json",
+  "manifest": {
+    "file": "/home/advisorppc/AdvisorSEO/repos/advisorseo-claude-plugin/dist/local-marketplace/plugins/advisorseo/.claude-plugin/plugin.json",
+    "type": "plugin",
+    "errors": [],
+    "warnings": [],
+    "notes": []
+  },
+  "contents": []
+}

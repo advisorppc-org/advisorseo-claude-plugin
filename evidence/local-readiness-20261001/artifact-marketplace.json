@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "strict": true,
+  "target": "/home/advisorppc/AdvisorSEO/repos/advisorseo-claude-plugin/dist/local-marketplace/.claude-plugin/marketplace.json",
+  "manifest": {
+    "file": "/home/advisorppc/AdvisorSEO/repos/advisorseo-claude-plugin/dist/local-marketplace/.claude-plugin/marketplace.json",
+    "type": "marketplace",
+    "errors": [],
+    "warnings": [],
+    "notes": []
+  },
+  "contents": []
+}

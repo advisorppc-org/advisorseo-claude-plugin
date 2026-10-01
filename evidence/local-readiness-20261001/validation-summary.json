@@ -1,0 +1,58 @@
+{
+  "status": "LOCAL PACKAGE CHECKS PASS",
+  "cli_version": "2.1.285 (Claude Code)",
+  "network_isolated": true,
+  "temporary_config": true,
+  "installed": false,
+  "reproducible_archives": true,
+  "exact_allowlist": true,
+  "missing_file_rejected": true,
+  "source_symlink_rejected": true,
+  "validations": [
+    {
+      "name": "source-marketplace",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "source-plugin-preserved-warning",
+      "actual_exit": 1,
+      "expected_exit": 1
+    },
+    {
+      "name": "artifact-marketplace",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "artifact-plugin-manifest",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "artifact-plugin-directory",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "artifact-skills",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "unpacked-marketplace",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "unpacked-marketplace-plugin",
+      "actual_exit": 0,
+      "expected_exit": 0
+    },
+    {
+      "name": "unpacked-plugin",
+      "actual_exit": 0,
+      "expected_exit": 0
+    }
+  ]
+}

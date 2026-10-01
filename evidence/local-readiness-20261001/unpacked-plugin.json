@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "strict": true,
+  "target": "/tmp/advisorseo-plugin-validation-9lwwfgbv/advisorseo-plugin-draft.zip/advisorseo/.claude-plugin/plugin.json",
+  "manifest": {
+    "file": "/tmp/advisorseo-plugin-validation-9lwwfgbv/advisorseo-plugin-draft.zip/advisorseo/.claude-plugin/plugin.json",
+    "type": "plugin",
+    "errors": [],
+    "warnings": [],
+    "notes": []
+  },
+  "contents": []
+}
