@@ -1,0 +1,13 @@
+{
+  "success": true,
+  "strict": true,
+  "target": "<validation>/advisorseo-local-draft.zip/advisorseo-marketplace/.claude-plugin/marketplace.json",
+  "manifest": {
+    "file": "<validation>/advisorseo-local-draft.zip/advisorseo-marketplace/.claude-plugin/marketplace.json",
+    "type": "marketplace",
+    "errors": [],
+    "warnings": [],
+    "notes": []
+  },
+  "contents": []
+}

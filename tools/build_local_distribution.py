@@ -14,6 +14,7 @@ ALLOWLIST = (
     'skills/seo-content-plan/SKILL.md',
     'skills/publish-to-wordpress/SKILL.md',
     'skills/lead-triage/SKILL.md',
+    'skills/seo-workspace-review/SKILL.md',
 )
 
 
@@ -88,6 +89,9 @@ def build(source=ROOT, output=DIST):
         'status': 'local draft; not installed or released',
         'plugin_name': 'advisorseo',
         'version': json.loads(files['.claude-plugin/plugin.json'])['version'],
+        'plugin_file_count': len(ALLOWLIST),
+        'skill_count': sum(name.startswith('skills/') for name in ALLOWLIST),
+        'marketplace_file_count': len(marketplace_files),
         'plugin_allowlist': list(ALLOWLIST),
         'source_sha256': {name: sha256((source / name).read_bytes()).hexdigest() for name in (*ALLOWLIST, '.claude-plugin/marketplace.json')},
         'artifact_sha256': {name: sha256(data).hexdigest() for name, data in sorted(marketplace_files.items())},
@@ -99,4 +103,5 @@ def build(source=ROOT, output=DIST):
 
 if __name__ == '__main__':
     receipt = build()
-    print(f"Built local AdvisorSEO {receipt['version']}: six plugin files and separate marketplace; no install")
+    print(f"Built local AdvisorSEO {receipt['version']}: {receipt['plugin_file_count']} plugin files, "
+          f"{receipt['skill_count']} skills and separate marketplace; no install")

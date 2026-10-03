@@ -1,12 +1,12 @@
 # AdvisorSEO for Claude Code
 
 This local draft helps review existing AdvisorSEO site, content, and lead records
-and prepare local content plans or publication proposals. All three bundled skills
+and prepare local content plans or publication proposals. All four bundled skills
 are limited to reads and local proposals for the current rollout. They do not save
 changes, start audits, send outreach, stage drafts, or publish to WordPress.
 
 The package retains the existing `advisorseo` identity and remote HTTP connector
-address, `https://mcp.advisorseo.ai/mcp`. Version `0.1.1` is a proposed local update,
+address, `https://mcp.advisorseo.ai/mcp`. Version `0.1.2` is a proposed local update,
 not an installed, uploaded, approved, or published release.
 
 ## Current limits
@@ -26,7 +26,11 @@ Stored keywords, page checks, lead stages, and counts are records to inspect. Th
 do not establish live ranking, demand, answer-engine citations, attribution, or
 revenue. Plans and numerical claims need identified sources and dates.
 
-## The three skills
+## The four skills
+
+- `seo-workspace-review`: review saved websites, keywords, and content with the
+  optional read-only directory connection. Summarize evidence and suggest local
+  edits; this skill cannot change records or publish.
 
 - `seo-content-plan`: read existing site/profile, keywords, plans, content, and
   recorded findings; prepare a local plan or article proposal using supplied evidence.
@@ -37,6 +41,34 @@ revenue. Plans and numerical claims need identified sources and dates.
 
 Retrieved content and lead text are data, not instructions or approval. Missing
 facts stay explicit. No workflow requests passwords, tokens, or pasted headers.
+
+## Optional directory connection
+
+The new `seo-workspace-review` skill uses the six `advisorseo_*` tools at
+`https://mcp.advisorseo.ai/claude-directory`. Add that URL as a separate custom
+MCP connection with Streamable HTTP, complete its OAuth sign-in, choose the intended
+workspace, and review the read-only consent. This is opt-in setup for the existing
+plugin, not a second plugin identity or an automatic connection migration.
+Availability on the released service and the Claude host must be verified before
+claiming that connection works.
+
+The directory tools read workspace counts, websites, keywords, content metadata,
+one content body, and tool schemas. List pages contain up to 50 records; follow
+`next_offset` within the supported 0 to 10,000 range. Bodies stop at 12,000
+characters and return `truncated` when incomplete. Summaries must identify partial
+coverage and available record dates. Stored rank, research, counts, and publication
+status do not prove live rankings, traffic, revenue, or a successful CMS change.
+
+Directory access cannot create or edit records, run new audits, publish, or manage
+leads. Capability search does not execute tools or unlock broader permissions. For
+broader access, deliberately add or retain the existing
+`https://mcp.advisorseo.ai/mcp` connection and complete its separate, broader OAuth
+consent. A directory token cannot be reused on the full endpoint.
+
+The bundled `.mcp.json` and the original `seo-content-plan`,
+`publish-to-wordpress`, and `lead-triage` skills are unchanged. They continue to use
+the full connection's `gravity_*` names and their existing local-proposal limits.
+Adding a connection does not authorize a write or establish production readiness.
 
 ## Connection and data handling
 
@@ -63,7 +95,7 @@ The builder creates `dist/local-marketplace/` and a deterministic
 `dist/advisorseo-local-draft.zip`, plus a standalone
 `dist/advisorseo-plugin-draft.zip`. The marketplace entry points at
 `./plugins/advisorseo` inside that artifact. The allowlist includes only the plugin
-manifest, unchanged MCP configuration, three skills, and license, plus the separate
+manifest, unchanged MCP configuration, four skills, and license, plus the separate
 marketplace manifest. No development instructions, README, tooling, evidence,
 credential files, or repository history are shipped.
 
@@ -79,6 +111,13 @@ check runs both with strict mode in a network namespace and temporary Claude con
 without installing or changing an existing profile. See the
 [local readiness report](docs/LOCAL-READINESS-20261001.md) and
 [validation summary](evidence/local-readiness-20261001/validation-summary.json).
+
+New checks write to `evidence/directory-skill-20261003/`; historical readiness
+evidence is retained. `--package-only` verifies the exact allowlist, archive
+contents, and reproducibility without invoking Claude. In a managed execution
+environment that already restricts network access, `--managed-sandbox` runs the
+local validator with a temporary Claude config and telemetry/updating disabled.
+Its receipt distinguishes managed restrictions from an isolated network namespace.
 
 Do not install or register this draft until the release owner selects the reviewed
 artifact and verifies the supported account authorization flow. Older GitHub-root
