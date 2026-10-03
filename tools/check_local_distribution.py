@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Check exact package contents, reproducibility, and both Claude manifests offline."""
 from hashlib import sha256
+import argparse
 import json
 import os
 from pathlib import Path
@@ -11,10 +12,10 @@ from zipfile import ZipFile
 
 from build_local_distribution import ALLOWLIST, DIST, ROOT, build, payloads
 
-OUT = ROOT / 'evidence/local-readiness-20261001'
+OUT = ROOT / 'evidence/directory-skill-20261003'
 
 
-def main():
+def main(*, package_only=False, managed_sandbox=False):
     OUT.mkdir(parents=True, exist_ok=True)
     receipt = build()
     first = {name: (DIST / name).read_bytes() for name in receipt['archive_sha256']}
@@ -24,6 +25,9 @@ def main():
     expected = {'.claude-plugin/marketplace.json', *(f'plugins/advisorseo/{name}' for name in ALLOWLIST)}
     actual = {str(p.relative_to(artifact)) for p in artifact.rglob('*') if p.is_file()}
     assert actual == expected
+    assert receipt['plugin_file_count'] == len(ALLOWLIST) == 7
+    assert receipt['skill_count'] == 4
+    assert receipt['marketplace_file_count'] == len(expected) == 8
     assert not any(p.is_symlink() for p in artifact.rglob('*'))
     for name, digest in receipt['artifact_sha256'].items():
         assert sha256((artifact / name).read_bytes()).hexdigest() == digest, name
@@ -62,11 +66,12 @@ def main():
             with ZipFile(DIST / archive) as zipped:
                 assert set(zipped.namelist()) == expected_members
                 zipped.extractall(temp / archive)
-        cli = shutil.which('claude')
-        assert cli, 'Installed Claude CLI is required; no download fallback'
+        cli = shutil.which('claude') if not package_only else None
+        assert package_only or cli, 'Installed Claude CLI is required; no download fallback'
         env = {'PATH': os.environ['PATH'], 'CLAUDE_CONFIG_DIR': str(temp / 'config'),
                'DISABLE_AUTOUPDATER': '1', 'CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC': '1'}
-        version = subprocess.run(['unshare', '-Urn', cli, '--version'], env=env, text=True, capture_output=True, check=True).stdout.strip()
+        prefix = [] if managed_sandbox else ['unshare', '-Urn']
+        version = None if package_only else subprocess.run([*prefix, cli, '--version'], env=env, text=True, capture_output=True, check=True).stdout.strip()
         targets = [
             ('source-marketplace', ROOT / '.claude-plugin/marketplace.json', 0),
             ('source-plugin-preserved-warning', ROOT / '.claude-plugin/plugin.json', 1),
@@ -79,11 +84,14 @@ def main():
             ('unpacked-plugin', temp / 'advisorseo-plugin-draft.zip/advisorseo/.claude-plugin/plugin.json', 0),
         ]
         validations = []
-        for name, path, expected_exit in targets:
-            run = subprocess.run(['unshare', '-Urn', cli, 'plugin', 'validate', '--strict', '--json', str(path)],
+        def portable_evidence(value):
+            return value.replace(str(ROOT), '<source>').replace(str(temp), '<validation>')
+
+        for name, path, expected_exit in ([] if package_only else targets):
+            run = subprocess.run([*prefix, cli, 'plugin', 'validate', '--strict', '--json', str(path)],
                                  env=env, text=True, capture_output=True)
-            (OUT / f'{name}.json').write_text(run.stdout)
-            (OUT / f'{name}.stderr.txt').write_text(run.stderr)
+            (OUT / f'{name}.json').write_text(portable_evidence(run.stdout))
+            (OUT / f'{name}.stderr.txt').write_text(portable_evidence(run.stderr))
             report = json.loads(run.stdout)
             assert run.returncode == expected_exit, (name, run.returncode, run.stdout, run.stderr)
             if expected_exit == 0:
@@ -99,7 +107,14 @@ def main():
         shutil.copyfile(DIST / name, OUT / name)
     shutil.copyfile(DIST / 'build-receipt.json', OUT / 'build-receipt.json')
     summary = {'status': 'LOCAL PACKAGE CHECKS PASS', 'cli_version': version,
-               'network_isolated': True, 'temporary_config': True, 'installed': False,
+               'network_isolated': not package_only and not managed_sandbox,
+               'managed_network_restricted': not package_only and managed_sandbox,
+               'temporary_config': not package_only, 'installed': False,
+               'plugin_file_count': receipt['plugin_file_count'],
+               'skill_count': receipt['skill_count'],
+               'marketplace_file_count': receipt['marketplace_file_count'],
+               'validator_run_count': len(validations),
+               'validator_requested': not package_only,
                'reproducible_archives': True, 'exact_allowlist': True,
                'missing_file_rejected': True, 'source_symlink_rejected': True,
                'validations': validations}
@@ -108,4 +123,9 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser()
+    options = parser.add_mutually_exclusive_group()
+    options.add_argument('--package-only', action='store_true', help='Check package contents without invoking Claude.')
+    options.add_argument('--managed-sandbox', action='store_true', help='Use existing managed network restrictions rather than unshare.')
+    args = parser.parse_args()
+    main(package_only=args.package_only, managed_sandbox=args.managed_sandbox)

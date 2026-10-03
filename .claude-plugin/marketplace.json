@@ -1,6 +1,6 @@
 {
   "name": "advisorseo",
-  "description": "AdvisorSEO workflows for reviewing existing search and lead records and preparing local proposals. Publishing remains a separate rollout gate.",
+  "description": "AdvisorSEO workflows for saved workspace reviews and local content or lead proposals. The read-only directory connection is optional; publishing remains a separate rollout gate.",
   "owner": {
     "name": "AdvisorPPC",
     "email": "support@advisorseo.ai",
@@ -10,8 +10,8 @@
     {
       "name": "advisorseo",
       "source": "./",
-      "description": "Review stored site, content, and lead records with AdvisorSEO and prepare local draft proposals. Publishing and trusted write approval remain unverified for this rollout.",
-      "version": "0.1.1",
+      "description": "Review saved SEO workspace records with an optional read-only directory connection, or use the existing full connector for local content and lead proposals. Publishing remains unverified for this rollout.",
+      "version": "0.1.2",
       "author": {
         "name": "AdvisorPPC",
         "url": "https://advisorseo.ai"

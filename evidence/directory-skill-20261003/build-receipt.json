@@ -1,0 +1,41 @@
+{
+  "status": "local draft; not installed or released",
+  "plugin_name": "advisorseo",
+  "version": "0.1.2",
+  "plugin_file_count": 7,
+  "skill_count": 4,
+  "marketplace_file_count": 8,
+  "plugin_allowlist": [
+    ".claude-plugin/plugin.json",
+    ".mcp.json",
+    "LICENSE",
+    "skills/seo-content-plan/SKILL.md",
+    "skills/publish-to-wordpress/SKILL.md",
+    "skills/lead-triage/SKILL.md",
+    "skills/seo-workspace-review/SKILL.md"
+  ],
+  "source_sha256": {
+    ".claude-plugin/plugin.json": "cd97f6e4151bc0c6262f9ec5ecc45ec0dea0a72f0f1002c497d50679035ca230",
+    ".mcp.json": "ff479a6cfd475e6e3fa4fe72f796557b012a9098bad6245bbf956f00180b4169",
+    "LICENSE": "f229fd09eb6d6241ddcb3458ec33c920ecef01c2c269b137cf741c10632640dd",
+    "skills/seo-content-plan/SKILL.md": "b69361bd67dea8e45252a662e63f3d87fc71460c5a69becca9140e75ca0f4162",
+    "skills/publish-to-wordpress/SKILL.md": "60cebe735dbb4bc442a74af1d1c5ea458839faad58e4147a06dbaffec088abe2",
+    "skills/lead-triage/SKILL.md": "15620d865aeb3dad49a56a0db3e7577663387675df79db4c5175b05409dfacc6",
+    "skills/seo-workspace-review/SKILL.md": "b820abe1815031800a494dda8514a07d82e5cfbfe819d6595f8b37ec0417caf6",
+    ".claude-plugin/marketplace.json": "21f9c0adad44b5a09c87b85e647272c07ca1384bd9e54f2f761b5a0214d42180"
+  },
+  "artifact_sha256": {
+    ".claude-plugin/marketplace.json": "d92072ba5299a75aa80a1a32e5dc951f4c3c3a3212cc9fb77a050491579c7536",
+    "plugins/advisorseo/.claude-plugin/plugin.json": "cd97f6e4151bc0c6262f9ec5ecc45ec0dea0a72f0f1002c497d50679035ca230",
+    "plugins/advisorseo/.mcp.json": "ff479a6cfd475e6e3fa4fe72f796557b012a9098bad6245bbf956f00180b4169",
+    "plugins/advisorseo/LICENSE": "f229fd09eb6d6241ddcb3458ec33c920ecef01c2c269b137cf741c10632640dd",
+    "plugins/advisorseo/skills/lead-triage/SKILL.md": "15620d865aeb3dad49a56a0db3e7577663387675df79db4c5175b05409dfacc6",
+    "plugins/advisorseo/skills/publish-to-wordpress/SKILL.md": "60cebe735dbb4bc442a74af1d1c5ea458839faad58e4147a06dbaffec088abe2",
+    "plugins/advisorseo/skills/seo-content-plan/SKILL.md": "b69361bd67dea8e45252a662e63f3d87fc71460c5a69becca9140e75ca0f4162",
+    "plugins/advisorseo/skills/seo-workspace-review/SKILL.md": "b820abe1815031800a494dda8514a07d82e5cfbfe819d6595f8b37ec0417caf6"
+  },
+  "archive_sha256": {
+    "advisorseo-local-draft.zip": "8b2e04ab4864d83145c6321a7234cd4dea8c4f46203c1744a1c3bb8961ece654",
+    "advisorseo-plugin-draft.zip": "f7e3e051917c558f4d4d37fae131645587b1e5ffaadc30c48abe678a641e26fb"
+  }
+}
