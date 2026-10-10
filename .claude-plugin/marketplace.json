@@ -2,7 +2,7 @@
   "name": "advisorseo",
   "description": "AdvisorSEO \u2014 an AI manager that gets SEO and lead work done: content planning, WordPress publishing and lead triage for a business website.",
   "owner": {
-    "name": "AdvisorPPC",
+    "name": "Advisor Media Group LLC",
     "email": "support@advisorseo.ai",
     "url": "https://advisorseo.ai"
   },
@@ -12,7 +12,7 @@
       "source": "./",
       "description": "AdvisorSEO is an AI manager that gets SEO and lead work done. Plan content from a business profile and real keywords, draft and publish articles to WordPress, and work the lead pipeline — all through the AdvisorSEO connector, with every write previewed before it happens.",
       "version": "0.1.0",
-      "author": { "name": "AdvisorPPC", "url": "https://advisorseo.ai" },
+      "author": { "name": "Advisor Media Group LLC", "url": "https://advisorseo.ai" },
       "homepage": "https://advisorseo.ai",
       "license": "MIT",
       "category": "marketing",
