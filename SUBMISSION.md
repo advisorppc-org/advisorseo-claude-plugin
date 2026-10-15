@@ -34,15 +34,17 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 ### One-liner (200 characters or fewer)
 
-Get found in Google and in AI assistants: AI-crawler readiness, site audits, pages to win, and approval-gated changes with measured results.
+Get found in Google and in AI assistants: AI-crawler readiness, site audits, pages to win, approval-gated changes, and results with n and an interval, or insufficient data.
 
 ### Description (2,000 characters or fewer)
 
 AdvisorSEO helps a business get found in Google and in the answers AI assistants give. Install it and Claude can check whether AI search and user-fetch crawlers are allowed to read your site, audit the live site and explain each finding with its evidence, choose the ten pages most worth winning with the gap each one fills and the metric it should move, and track the leads your site brings in.
 
-Nothing changes without your yes. Every write first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
+It works on its own: it watches the site, proposes each change with its reason, asks for one approval, applies it, then measures and reports the result with n and an interval, or insufficient data (site-audit and ai-readiness-check watch, site-audit and pages-to-win propose, approve-and-measure-change applies and measures, leads reports pipeline results).
 
-AdvisorSEO reports results honestly: every rate comes with its sample size and an interval, or the words "insufficient data", and it never claims a rank position inside an AI assistant. It never scrapes consumer AI apps.
+Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no key or password is ever pasted. Tokens carry the scopes mcp:tools and mcp:read. Nothing changes on your site without your yes. Every write first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
+
+Every result statement comes with n and an interval, or the words "insufficient data", and AdvisorSEO never claims a rank position inside an AI assistant. It never scrapes consumer AI apps.
 
 The plugin bundles the AdvisorSEO connector and seven skills: start-here, ai-readiness-check, site-audit, pages-to-win, approve-and-measure-change, connect-and-import and leads. Sign in once with your AdvisorSEO account; no key or password is ever pasted into the chat. Google Search Console and Analytics are connected in the AdvisorSEO web app under your own Google consent.
 
@@ -77,7 +79,24 @@ Why: ownership of the listing is the irreversible part, and the brand shown must
 | Legal entity | Advisor Media Group LLC (decided by the owner, 2026-10-15; also the LICENSE copyright holder) |
 | Submitting account | The same claude.ai organization that already holds the company's existing directory listing (decided by the owner, 2026-10-15) |
 | Support contact | support@advisorseo.ai |
-| Security contact | OWNER DECISION. Proposed: security@advisorseo.ai, with a /security page on advisorseo.ai (not live today). |
+| Security contact | Recommended: security@advisorseo.ai. Owner decision pending. |
+| Security page | Recommended: https://advisorseo.ai/security, listing the controls below. Owner decision pending (the URL returns 404 today). |
+
+Why: enterprise buyers, and the agents acting for them, pick the vendor whose controls they can audit, and the portal asks for a security contact.
+
+### Controls stated in the listing
+
+Why: every control named in listing copy must be checkable today, and no certification is claimed.
+
+| Control | Evidence checked 2026-10-15 |
+|---|---|
+| OAuth 2.1, authorization code with PKCE S256, dynamic client registration | https://mcp.advisorseo.ai/.well-known/oauth-authorization-server (`code_challenge_methods_supported: ["S256"]`, `registration_endpoint`); stated on /docs and /privacy |
+| Scoped tokens (`mcp:tools`, `mcp:read`) | same metadata, `scopes_supported` |
+| Approval before any site write | preview-first write tools with `confirm=true`, enforced in every skill and tested by evals/ guards |
+| WordPress application password stored encrypted and revocable | stated on /privacy and /docs |
+| Data-handling table | README.md, "Data flow" |
+
+Not stated in listing copy until confirmed (lead to verify on the deployed connector): scoped agent keys and a tool-call audit log. Neither is documented on advisorseo.ai, and neither could be checked from the deployed connector's public metadata. No certification (SOC 2, ISO 27001 or other) is claimed.
 
 ## Blockers before submit
 

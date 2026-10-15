@@ -114,9 +114,28 @@ for s in skills:
     listing_words(s, text)
 
 # 5. Listing copy
+# Why: hype words and unmeasured claims are what an auditing buyer or reviewer rejects first.
+BANNED = [r"\bguarantee(d|s)?\b", r"#1\b", r"\binstant(ly)?\b", r"\brevolutionary\b", r"\bAI rank"]
+
+
+def banned_words(path: Path, text: str, allow_ai_rank: bool = False) -> None:
+    prose = strip_code(text)
+    for pat in BANNED:
+        if allow_ai_rank and "AI rank" in pat:
+            continue
+        if re.search(pat, prose, re.I):
+            fail(f"{path.relative_to(ROOT)}: banned word matching {pat}")
+    if "!" in re.sub(r"`[^`]*`", "", prose):
+        fail(f"{path.relative_to(ROOT)}: exclamation mark")
+
+
 for f in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"):
     p = ROOT / f
     listing_words(p, p.read_text())
+    banned_words(p, p.read_text())
+# Skills may name "AI rank" only inside the rule that forbids stating one.
+for s in skills:
+    banned_words(s, s.read_text(), allow_ai_rank=True)
 for tool in set(re.findall(r"gravity_[a-z_]+", (ROOT / "README.md").read_text())):
     if tool not in LIVE:
         fail(f"README.md: names {tool}, which is not a deployed tool")

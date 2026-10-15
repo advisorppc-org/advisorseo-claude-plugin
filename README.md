@@ -1,6 +1,6 @@
 # AdvisorSEO for Claude
 
-Get found in Google and in AI assistants. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, and makes changes only after you approve a preview, then tells you how the result will be measured.
+Get found in Google and in AI assistants, with controls your security team can check. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, and changes nothing on your site until you approve a preview. Controls: sign-in is OAuth 2.1 (authorization code with PKCE S256 and dynamic client registration, so no key is ever pasted), tokens carry the scopes `mcp:tools` and `mcp:read`, every site write needs your approval in a separate turn, and the data-handling table below lists every place your data goes. Every result it reports comes with n and an interval, or the words "insufficient data".
 
 This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and seven skills that know how to use it well.
 
@@ -65,6 +65,12 @@ Why: each skill answers one question a site owner actually asks, and Claude pick
 | leads | "Any new leads?" | New leads, one lead's full history, and status moves with a note on each |
 
 Every skill reports a rate with its sample size plus an interval, or says "insufficient data". No skill ever claims a rank position inside an AI assistant, and no skill queries or scrapes consumer AI apps.
+
+## How it works on its own
+
+Why: an owner wants the site improved without having to ask each time, and without losing control of what changes.
+
+AdvisorSEO watches the site (**site-audit** with a recurring watch, **ai-readiness-check**), proposes each change with its reason and the metric it should move (**site-audit**, **pages-to-win**), asks for one approval and applies it (**approve-and-measure-change**), then measures and reports the result with n and an interval, or "insufficient data" (**approve-and-measure-change**, **leads**).
 
 ## Every write asks first
 
