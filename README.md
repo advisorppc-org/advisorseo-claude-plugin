@@ -1,98 +1,121 @@
-# AdvisorSEO for Claude Code
+# AdvisorSEO for Claude
 
-AdvisorSEO is an AI manager that gets SEO and lead work done for a business website.
-It plans content from the business's own profile and real keywords, writes and reviews
-the articles, sends approved ones to WordPress, and works the leads the site captures —
-inside Claude Code, in the same conversation where the work is being decided.
+Get found in Google and in AI assistants. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, and makes changes only after you approve a preview, then tells you how the result will be measured.
 
-This repository is the Claude Code plugin. Installing it connects Claude to the
-AdvisorSEO connector at `https://mcp.advisorseo.ai/mcp` and adds three skills that know
-how to run the work end to end.
+This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and seven skills that know how to use it well.
+
+Why: one install gives Claude both the connector and the know-how, so the first answer is a useful one and no change reaches a live site without your yes.
 
 ## Install
 
-In Claude Code:
+Claude Code 2.1.275 or later, inside a session:
+
+```
+/plugin install advisorseo --marketplace advisorppc-org/advisorseo-claude-plugin
+```
+
+From a shell:
+
+```
+claude plugin install advisorseo --marketplace advisorppc-org/advisorseo-claude-plugin
+```
+
+Two steps, for older Claude Code versions:
 
 ```
 /plugin marketplace add advisorppc-org/advisorseo-claude-plugin
 /plugin install advisorseo@advisorseo
 ```
 
-Then restart Claude Code, or start a new session, so the connector loads.
+Connector only, without the skills:
 
-## Connect and consent
+```
+claude mcp add --transport http advisorseo https://mcp.advisorseo.ai/mcp
+```
 
-The connector is a remote MCP server over Streamable HTTP, authorized with OAuth. You
-sign in once, in your browser, to the AdvisorSEO account that owns your sites.
+claude.ai and Claude Desktop: open Customize, then Plugins, and add the marketplace repository `advisorppc-org/advisorseo-claude-plugin`, or install AdvisorSEO from claude.ai/directory once it is listed. A plugin installed on your account also loads in Claude Code as `advisorseo@synced`.
 
-1. After installing, Claude asks you to authenticate with AdvisorSEO.
-2. A browser window opens on the AdvisorSEO sign-in page.
-3. You review what Claude is being allowed to do and approve it.
-4. The window closes and Claude can read and work your sites.
+For a team, add this to the repository's `.claude/settings.json`:
 
-Nothing is stored in this repository and nothing is asked of you in the chat — no keys,
-no passwords, no headers to paste. Your authorization is held by Claude Code's own
-credential store and can be revoked at any time by removing the plugin or by revoking
-the connection from your AdvisorSEO account.
+```json
+{
+  "extraKnownMarketplaces": {
+    "advisorseo": {
+      "source": { "source": "github", "repo": "advisorppc-org/advisorseo-claude-plugin" }
+    }
+  },
+  "enabledPlugins": { "advisorseo@advisorseo": true }
+}
+```
 
-Your workspace is yours alone: every call is scoped to the account you signed in with,
-and one account can never read or change another's sites, content or leads.
+The first AdvisorSEO call opens a browser window where you sign in to your AdvisorSEO account and approve access. No key, password or header is ever pasted into the chat.
+
+## What it does
+
+Why: each skill answers one question a site owner actually asks, and Claude picks the skill from your words.
+
+| Skill | Ask it like this | What you get |
+|---|---|---|
+| start-here | "How is my site doing?" | The workspace overview, the right site picked, and a route to the next skill |
+| ai-readiness-check | "Can ChatGPT read my site?" | Every AI search and user-fetch bot marked ok or blocked, with the reason, plus failed checklist items |
+| site-audit | "Audit my site" | Up to 10 findings with page and evidence, what changed since the last run, an optional recurring watch |
+| pages-to-win | "What pages should I create?" | Up to 10 pages, each with a gap type and the metric it should move, saved to your plan on approval |
+| approve-and-measure-change | "Publish that post" | A preview, your explicit yes, the change, and the metric to check afterwards |
+| connect-and-import | "Add my site" | Platform detected, site record and business profile saved, WordPress and Google connection explained |
+| leads | "Any new leads?" | New leads, one lead's full history, and status moves with a note on each |
+
+Every skill reports a rate with its sample size plus an interval, or says "insufficient data". No skill ever claims a rank position inside an AI assistant, and no skill queries or scrapes consumer AI apps.
 
 ## Every write asks first
 
-AdvisorSEO never changes anything on the first call. Each write answers with a preview
-of exactly what it would do and changes nothing; it happens only when it is called again
-with your confirmation. Publishing to WordPress goes further — the preview also tests
-the WordPress connection and shows you the exact article that would be sent, before a
-word reaches your live site.
+Why: these tools can change a live website, so a preview and a separate approval turn are the safety line.
 
-The skills in this plugin are written to that rule and never work around it.
+The first call to a write tool changes nothing and returns a preview. The change happens only when the tool is called again with `confirm=true`, after you approve in your own next message. These are the tools the skills use that change something:
 
-## The three skills
+| Write tool | What it changes |
+|---|---|
+| `gravity_create_site`, `gravity_update_site` | Your site record in AdvisorSEO, including the stored WordPress address |
+| `gravity_set_profile` | Your business profile in AdvisorSEO |
+| `gravity_add_keywords` | Your stored keyword list |
+| `gravity_add_strategies` | Your content plan |
+| `gravity_save_content` | A stored page or article (the previous version is kept) |
+| `gravity_publish_wordpress` | Your live WordPress site, as a published post or a WordPress draft |
+| `gravity_publish_site`, `gravity_unpublish_site` | The hosted AdvisorSEO site for a site record |
+| `gravity_update_lead` | A lead's status and notes |
+| `gravity_audit_domain`, `gravity_audit_watch` | Starts an audit run, or a recurring audit schedule |
+| `gravity_crawl_site` | Imports your site's public pages into your AdvisorSEO workspace |
 
-Claude picks the right one from what you ask for; you do not have to name them.
+Tool names keep the connector's fixed wire prefix; they are all AdvisorSEO tools.
 
-### seo-content-plan
+## Data flow
 
-From a business profile and your target keywords to a scheduled content calendar and a
-first draft. It reads or fills in your business profile, can run an SEO audit of the
-live domain to ground the plan in real findings, stores your keywords, builds the
-calendar with dates and priorities, and writes the first article.
+Why: you should know every place your data goes before you install anything.
 
-Ask for it with something like *"plan three months of posts for my plumbing business"*
-or *"turn these keywords into a calendar"*.
+| Where | What is sent or fetched | When |
+|---|---|---|
+| mcp.advisorseo.ai | Your tool calls and their arguments; results come back to Claude | Every AdvisorSEO tool call |
+| app.advisorseo.ai | Sign-in and the OAuth consent page; your account, plan and Google connection | At install, and when you manage your account |
+| Your website (public pages, robots.txt, llms.txt) | Fetched by the AdvisorSEO server, the way a crawler would | Audits, AI readiness checks, crawls |
+| Google APIs, under your own Google OAuth consent | Search Console and Analytics reads for the properties you connect | Only after you connect Google in app.advisorseo.ai |
+| Google PageSpeed Insights | The public URL of the page being checked | Page speed checks |
+| Your WordPress site, with the application password you stored | The article you approved | Only on a confirmed publish |
 
-### publish-to-wordpress
-
-Draft, review, confirm, publish. It finds the draft, walks you through the review, marks
-it approved, previews the publish against your live WordPress, and sends it only when you
-say so. It can also stage the article as a WordPress draft instead, so a human presses
-publish on your own site.
-
-Ask for it with something like *"publish that post"* or *"stage it in WordPress first"*.
-
-### lead-triage
-
-The leads your site captured, worked properly. It lists what is new, opens a single lead
-with its full history, and moves leads through `new` → `contacted` → `qualified` →
-`converted` or `lost`, with a note recording what actually happened at each step.
-
-Ask for it with something like *"any new leads?"* or *"mark that one contacted"*.
+The plugin itself runs no local code: it ships skills (text), an icon and one remote connector address. Nothing personal is stored in this repository. Your authorization is held in Claude's own credential store and can be revoked by removing the plugin or disconnecting Claude from your AdvisorSEO account.
 
 ## Requirements
 
-- Claude Code with plugin support.
-- An AdvisorSEO account — sign up at [advisorseo.ai](https://advisorseo.ai).
-- For publishing: a WordPress site whose address and application password are stored on
-  your AdvisorSEO site record. A WordPress application password is not your account
-  login password; it is a separate one you generate in WordPress and can revoke there.
+- An AdvisorSEO account: [advisorseo.ai](https://advisorseo.ai).
+- For publishing: a WordPress site with an application password stored on your AdvisorSEO site record. An application password is not your WordPress login password.
 
 ## Privacy, terms and support
 
+Why: these are the pages the directory and your own reviewers will check.
+
+- Docs: [advisorseo.ai/docs](https://advisorseo.ai/docs)
 - Privacy: [advisorseo.ai/privacy](https://advisorseo.ai/privacy)
 - Terms: [advisorseo.ai/terms](https://advisorseo.ai/terms)
-- Support: [support@advisorseo.ai](mailto:support@advisorseo.ai)
+- Support: [advisorseo.ai/support](https://advisorseo.ai/support) or support@advisorseo.ai
 
 ## License
 
-MIT — see [LICENSE](LICENSE).
+MIT, see [LICENSE](LICENSE).
