@@ -133,6 +133,15 @@ for f in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-p
     p = ROOT / f
     listing_words(p, p.read_text())
     banned_words(p, p.read_text())
+# Why: the repository is public, so every tracked text file is listing copy for the brand rule.
+for p in tracked():
+    if p.suffix.lower() in IMAGE_EXT or p.relative_to(ROOT).parts[0] == "skills":
+        continue
+    if str(p.relative_to(ROOT)) in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json", "scripts/check_package.py"):
+        continue
+    listing_words(p, p.read_text())
+    if re.search(r"(~/|/home/)[A-Za-z]", p.read_text()):
+        fail(f"{p.relative_to(ROOT)}: internal home path")
 # Skills may name "AI rank" only inside the rule that forbids stating one.
 for s in skills:
     banned_words(s, s.read_text(), allow_ai_rank=True)

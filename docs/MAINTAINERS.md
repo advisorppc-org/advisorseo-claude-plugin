@@ -25,26 +25,20 @@ Why: the directory tracks the default branch, so a merge is a release.
 
 Bump `version` in `.claude-plugin/plugin.json`, run `scripts/validate.sh`, run the evals, open a draft PR, merge on green CI plus an independent MERGE verdict, then tag `v<version>`.
 
-## Repo map (historical notes, kept for maintainers)
+## Repo map
 
+Why: a maintainer needs to know which repository serves which surface; internal paths, push recipes and history live in the private engineering library, not in this public repository.
 
-## AdvisorSEO repo map (same block in every AdvisorSEO repo; source of truth: advisorppc-org/advisorseo/REPO_MAP.md)
+This repository is one of six that make up AdvisorSEO (advisorseo.ai), which runs as its own separate stack.
 
-This repo is one of six that make up AdvisorSEO (advisorseo.ai), a product of AdvisorPPC that runs as its OWN separate
-stack (ADR-0005). GitHub org `advisorppc-org`. Hub: `advisorppc-org/advisorseo` (local `~/AdvisorSEO`): read its
-`README.md` and `board/BOARD.md` before any task.
+| Repository | Role | Serves |
+|---|---|---|
+| advisorseo | project hub: plans, board, decisions | (internal) |
+| advisorseo-mcp | MCP connector, 37 deployed tools | mcp.advisorseo.ai |
+| advisorseo-app | web app: sign-in, dashboard, OAuth consent, billing | app.advisorseo.ai |
+| advisorseo-site | site, docs, privacy, terms, support | advisorseo.ai |
+| advisorseo-claude-plugin | this plugin (public) | Claude directory |
+| advisorseo-connect-wp | WordPress plugin, free and Pro | wordpress.org, customer sites |
 
-| repo | role | local (Air) | DGX mirror | serves |
-|---|---|---|---|---|
-| advisorseo | project OS | `~/AdvisorSEO` | `~/AdvisorSEO` |: |
-| advisorseo-mcp | MCP connector (Python, 37 tools) | `~/advisorppc-gravity` (remote `advisorseo`) | `~/AdvisorSEO/repos/advisorseo-mcp` | mcp.advisorseo.ai |
-| advisorseo-app | web app: login, dashboard, OAuth consent, billing | `~/gravity-content-engine` | `~/AdvisorSEO/repos/advisorseo-app` | app.advisorseo.ai |
-| advisorseo-site | site, docs, privacy, terms, support | `~/advisorseo-site` | `~/AdvisorSEO/repos/advisorseo-site` | advisorseo.ai |
-| advisorseo-claude-plugin | Claude Code plugin (public) | `~/advisorseo-claude-plugin` | `~/AdvisorSEO/repos/advisorseo-claude-plugin` | Claude Code directory |
-| advisorseo-connect-wp | WordPress plugin free + Pro | `~/advisorseo-connect-wp` | `~/AdvisorSEO/repos/advisorseo-connect-wp` | wordpress.org, customer sites |
-
-NOT AdvisorSEO, never build/push/deploy AdvisorSEO from them: `advisorppc-org/advisorppc-gravity` (AdvisorPPC engine,
-upstream only), `gravity.advisorppc.com`, the `*-old` archives, `~/advisorppc-connectors/gravity` (stale), `marketingadvisorai/*`.
-Frozen wire contracts: tool names `gravity_*`, paths `/gravity/mcp`, `/gravity/v1/lead`, `/gravity/oauth/consent`,
-attribute `data-gravity-form`, `workspace_id` tenancy. "Gravity" is codename only; users see AdvisorSEO.
-Push: `source ~/ENV/git-load.sh && gpush` (origin = advisorppc-org, class-approved 2026-09-19) and `git push dgx <branch>`. No tokens in URLs or output.
+- Tool names, connector paths and the lead-form attribute are frozen wire contracts. Never rename them in this plugin; users only ever see the AdvisorSEO name.
+- Local checkouts, mirrors, push commands and the list of repositories that are not AdvisorSEO are in the private engineering library (the AdvisorSEO repo map). Never put tokens in URLs or output.
