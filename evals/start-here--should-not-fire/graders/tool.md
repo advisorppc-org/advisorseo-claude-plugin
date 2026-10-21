@@ -1,6 +1,6 @@
 ---
 type: "tool_used"
-tool: "mcp__plugin_advisorseo_advisorseo__gravity_overview"
+tool: "mcp__plugin_advisorseo_advisorseo__advisorseo_overview"
 min: 0
 max: 0
 arm: "both"

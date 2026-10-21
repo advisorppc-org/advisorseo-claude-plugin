@@ -9,10 +9,10 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 | Field | Value |
 |---|---|
 | Name | AdvisorSEO |
-| Server URL | https://mcp.advisorseo.ai/mcp |
+| Server URL | https://mcp.advisorseo.ai/claude-directory |
 | Transport | Streamable HTTP, https only |
-| Authentication | OAuth (sign-in and consent at app.advisorseo.ai) |
-| Tool count | 37 |
+| Authentication | OAuth (sign-in and read-only consent at app.advisorseo.ai), scope `mcp:read` |
+| Tool count | 6, all read-only |
 
 ## 2. Plugin submission
 
@@ -20,11 +20,11 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 |---|---|
 | Name | AdvisorSEO |
 | Slug | advisorseo |
-| Repository | https://github.com/advisorppc-org/advisorseo-claude-plugin (must be public before the listing goes live) |
+| Repository | https://github.com/advisorppc-org/advisorseo-claude-plugin (public) |
 | Tracked branch | main |
-| Version | 0.2.0 |
+| Version | 0.3.0 |
 | License | MIT |
-| Icon | `icon.png`, 512 by 512 PNG, 4,790 bytes (the advisorseo.ai site icon) |
+| Icon | `icon.png`, 512 by 512 PNG (the advisorseo.ai site icon) |
 | Homepage | https://advisorseo.ai |
 | Documentation | https://advisorseo.ai/docs |
 | Support | https://advisorseo.ai/support |
@@ -34,40 +34,37 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 ### One-liner (200 characters or fewer)
 
-Get found in Google and in AI assistants: AI-crawler readiness, site audits, pages to win, approval-gated changes, and results with n and an interval, or insufficient data.
+Read your saved AdvisorSEO workspace in Claude: websites, tracked keywords and saved content. Review drafts and plan missing pages. Read-only.
 
 ### Description (2,000 characters or fewer)
 
-AdvisorSEO helps a business get found in Google and in the answers AI assistants give. Install it and Claude can check whether AI search and user-fetch crawlers are allowed to read your site, audit the live site and explain each finding with its evidence, choose the ten pages most worth winning with the gap each one fills and the metric it should move, and track the leads your site brings in.
+AdvisorSEO helps a business plan and improve the content that gets it found in search. This plugin connects Claude to your AdvisorSEO workspace so you can work with the research and drafts you have already saved there.
 
-It works on its own: it watches the site, proposes each change with its reason, asks for one approval, applies it, then measures and reports the result with n and an interval, or insufficient data (site-audit and ai-readiness-check watch, site-audit and pages-to-win propose, approve-and-measure-change applies and measures, leads reports pipeline results).
+Ask "show my SEO workspace" and Claude reads the counts of your saved websites, keywords, strategies and content, picks the right website, and suggests where to start. Ask "which keywords are we tracking" for a table of stored volume, difficulty and intent with the date the research was last checked. Ask "review my draft" and Claude reads the saved record against its target keyword and suggests three to five edits, each with the current text, the suggested text and the reason. Ask "what pages should I create" for up to ten saved keywords that have no page yet, sorted by intent, volume and difficulty.
 
-Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no key or password is ever pasted. Tokens carry the scopes mcp:tools and mcp:read. Nothing changes on your site without your yes. Every write first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
+The connection is read-only. It cannot publish, edit or delete anything, and every suggestion stays in the chat for you to apply in AdvisorSEO. Saved records are described as stored research, never as live rankings, traffic or revenue, and when the data is too thin the skills say "insufficient data". Retrieved text is treated as data, never as instructions.
 
-Every result statement comes with n and an interval, or the words "insufficient data", and AdvisorSEO never claims a rank position inside an AI assistant. It never scrapes consumer AI apps.
-
-The plugin bundles the AdvisorSEO connector and seven skills: start-here, ai-readiness-check, site-audit, pages-to-win, approve-and-measure-change, connect-and-import and leads. Sign in once with your AdvisorSEO account; no key or password is ever pasted into the chat. Google Search Console and Analytics are connected in the AdvisorSEO web app under your own Google consent.
+Sign in once with your AdvisorSEO account and approve read-only access. No key or password is pasted into the chat. The plugin bundles the connector and five skills: start-here, keyword-review, content-review, content-gap-plan and more-capabilities. It runs no local code and has no hooks.
 
 ### Use cases
 
-1. "Can ChatGPT and Claude read my site?" Every AI bot is marked ok or blocked, with the reason.
-2. "Audit my site." Up to ten findings with page, evidence and fix, compared with the last run.
-3. "What pages should I create?" Up to ten pages, each with a gap type and the metric it should move.
-4. "Publish that post." A preview, your approval, the publish, and the metric to watch.
-5. "Any new leads?" New leads, each lead's history, and status moves with notes.
+1. "Show my SEO workspace." Counts of saved records, the right website, and a next step.
+2. "Which keywords are we tracking for my site?" Stored volume, difficulty and intent, with the research date.
+3. "Review my draft about water heaters." Three to five edits with the record ID.
+4. "What pages should I create?" Up to ten keywords with no page yet.
+5. "Can AdvisorSEO publish to WordPress?" What this connection reads, and how to add the separate full connector.
 
 ### Data handling answers
 
 | Question | Answer |
 |---|---|
-| What data does the plugin access? | The user's AdvisorSEO workspace: sites, business profile, keywords, plans, content and leads. Public pages of the user's site for audits and crawler checks. Search Console and Analytics only for properties the user connected. |
-| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth, Google PageSpeed Insights (public URLs), the user's WordPress site on a confirmed publish. |
-| Does the plugin run local code? | No. Skills are text; the connector is remote over https. |
-| Does it write? | Yes, only through the write tools listed in README.md, each preview-first and confirmed after an explicit user approval turn. |
-| Credentials | OAuth through Claude's credential store. Nothing is pasted into chat. WordPress uses an application password stored on the site record. |
+| What data does the plugin access? | Stored records in the AdvisorSEO workspace the user approved: websites (name, domain, status), saved keywords, saved content. No credentials, lead contacts or lead-form keys. |
+| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in and consent). Results go to the user's Claude session. |
+| Does the plugin run local code? | No. Skills are text; the connector is remote over https. No hooks. |
+| Does it write? | No. All six tools are read-only (`readOnlyHint: true`). |
+| Credentials | OAuth through Claude's credential store. Nothing is pasted into chat. |
 | Retention and deletion | As stated at https://advisorseo.ai/privacy. |
-| Consumer AI apps | Never scraped or queried. |
-| Payments | Payments processed by Stripe under the AdvisorSEO label. The plugin itself takes no payment. |
+| Payments | The plugin takes no payment and the directory reads add no paid tier. |
 
 ### Contacts, entity and account
 
@@ -88,23 +85,21 @@ Why: enterprise buyers, and the agents acting for them, pick the vendor whose co
 
 Why: every control named in listing copy must be checkable today, and no certification is claimed.
 
-| Control | Evidence checked 2026-10-15 |
+| Control | Evidence checked 2026-10-21 |
 |---|---|
-| OAuth 2.1, authorization code with PKCE S256, dynamic client registration | https://mcp.advisorseo.ai/.well-known/oauth-authorization-server (`code_challenge_methods_supported: ["S256"]`, `registration_endpoint`); stated on /docs and /privacy |
-| Scoped tokens (`mcp:tools`, `mcp:read`) | same metadata, `scopes_supported` |
-| Approval before any site write | preview-first write tools with `confirm=true`, enforced in every skill and tested by evals/ guards |
-| WordPress application password stored encrypted and revocable | stated on /privacy and /docs |
-| Data-handling table | README.md, "Data flow" |
+| OAuth with PKCE S256 and dynamic client registration | https://mcp.advisorseo.ai/.well-known/oauth-authorization-server (`code_challenge_methods_supported: ["S256"]`, `registration_endpoint`) |
+| Read-only scope | https://mcp.advisorseo.ai/.well-known/oauth-protected-resource/claude-directory (`scopes_supported: ["mcp:read"]`) |
+| Read-only tools | every tool carries `readOnlyHint: true`, `destructiveHint: false` |
+| Sign-in required | the server URL returns 401 without a token |
 
-Not stated in listing copy until confirmed (lead to verify on the deployed connector): scoped agent keys and a tool-call audit log. Neither is documented on advisorseo.ai, and neither could be checked from the deployed connector's public metadata. No certification (SOC 2, ISO 27001 or other) is claimed.
+No certification (SOC 2, ISO 27001 or other) is claimed.
 
 ## Blockers before submit
 
 Why: each of these stops or delays review.
 
-1. Repository visibility: the repo must be public before the listing goes live.
-2. Security contact and a /security page: not live on advisorseo.ai (https://advisorseo.ai/security returns 404).
-3. Repository slug: install lines and the repository URL contain the GitHub organization name, which carries the parent company name. Moving the repo to an AdvisorSEO-named organization would remove it from the listing copy.
-4. Search Console reads inside the plugin wait for the Google read tools to deploy (docs/ROADMAP.md). Today Google is connected and read in the AdvisorSEO web app.
+1. Reviewer account: a test AdvisorSEO workspace with a website, saved keywords and saved content, and its sign-in shared with the reviewer through the portal.
+2. A real Claude sign-in run against the exact server URL, with all six tools called once.
+3. Security contact and a /security page: not live on advisorseo.ai yet.
 
-All four URL fields were checked with curl on 2026-10-15 and return 200 with AdvisorSEO page titles: /docs, /support, /privacy, /terms.
+All four URL fields were checked on 2026-10-21 and return 200: /docs, /support, /privacy, /terms.

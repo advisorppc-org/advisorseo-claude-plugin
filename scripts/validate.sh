@@ -15,4 +15,6 @@ else
 fi
 echo "== repo checks"
 python3 scripts/check_package.py . || status=1
+echo "== skill checks"
+tests/check_skills.sh || status=1
 exit $status

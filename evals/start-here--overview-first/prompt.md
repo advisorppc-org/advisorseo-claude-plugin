@@ -4,4 +4,4 @@ runs: 3
 tags: ["start-here"]
 ---
 
-How is my website doing with AdvisorSEO?
+Show my SEO workspace.

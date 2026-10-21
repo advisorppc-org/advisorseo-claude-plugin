@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)brightplumbing\\.example"
+pattern: "(?i)brightplumbing\\.example|austinroofpros\\.example"
 weight: 1
 ---
 

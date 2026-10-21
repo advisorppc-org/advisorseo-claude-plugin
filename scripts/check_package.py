@@ -3,7 +3,7 @@
 
 Why: the directory review rejects or holds a plugin for these issues, and the
 strict CLI validator does not cover all of them (README length, binaries,
-listing words, tool names that are not deployed).
+listing words, tool names that are not on the directory connector).
 """
 import json
 import re
@@ -14,10 +14,16 @@ from pathlib import Path
 ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
 errors: list[str] = []
 LIVE = set((ROOT / "scripts/live-tools.txt").read_text().split())
-ALLOWED_FM = {"name", "description", "license", "metadata"}
+ALLOWED_FM = {"name", "description"}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
 BANNED_EXT = {".zip", ".pdf", ".ico", ".tar", ".gz", ".tgz", ".exe", ".bin", ".dll", ".so", ".dylib", ".jar", ".whl"}
 REPO_SLUG = "advisorppc-org/advisorseo-claude-plugin"
+CONNECTOR_URL = "https://mcp.advisorseo.ai/claude-directory"
+# The internal codename never appears in a shipped file. Split here so this
+# file passes its own check.
+CODENAME = "grav" + "ity"
+TOOL_RE = r"advisorseo_[a-z_]+"
+SELF = Path(__file__).resolve()
 
 
 def fail(msg: str) -> None:
@@ -34,12 +40,9 @@ def strip_code(text: str) -> str:
 
 
 def listing_words(path: Path, text: str) -> None:
-    # Tool names (gravity_*) are wire names and allowed in tool-call examples.
-    t = re.sub(r"gravity_[a-z_]+", "", text)
-    t = t.replace(REPO_SLUG, "")
-    if re.search(r"gravity", t, re.I):
-        fail(f"{path.relative_to(ROOT)}: codename outside a tool name")
-    if re.search(r"advisorppc", t, re.I):
+    if CODENAME in text.lower():
+        fail(f"{path.relative_to(ROOT)}: internal codename")
+    if path.resolve() != SELF and re.search(r"advisorppc", text.replace(REPO_SLUG, ""), re.I):
         fail(f"{path.relative_to(ROOT)}: parent company name outside the repository slug")
     if "\u2014" in text:
         fail(f"{path.relative_to(ROOT)}: em-dash")
@@ -68,7 +71,13 @@ if market.get("name") != "advisorseo" or not any(p.get("name") == plugin["name"]
 
 # 2. .mcp.json
 mcp = json.loads((ROOT / ".mcp.json").read_text())
-for name, srv in mcp.get("mcpServers", mcp).items():
+servers = mcp.get("mcpServers")
+if not isinstance(servers, dict) or set(mcp) != {"mcpServers"}:
+    fail(".mcp.json: not in the mcpServers form")
+    servers = {}
+if [s.get("url") for s in servers.values()] != [CONNECTOR_URL]:
+    fail(f".mcp.json: must name exactly one server at {CONNECTOR_URL}")
+for name, srv in servers.items():
     url = srv.get("url", "")
     if not url.startswith("https://"):
         fail(f".mcp.json: {name} is not an https URL")
@@ -108,10 +117,9 @@ for s in skills:
         fail(f"{s.relative_to(ROOT)}: no Check section")
     if "insufficient data" not in body:
         fail(f"{s.relative_to(ROOT)}: no 'insufficient data' rule")
-    for tool in set(re.findall(r"gravity_[a-z_]+", text)):
+    for tool in set(re.findall(TOOL_RE, text)):
         if tool not in LIVE:
-            fail(f"{s.relative_to(ROOT)}: names {tool}, which is not a deployed tool")
-    listing_words(s, text)
+            fail(f"{s.relative_to(ROOT)}: names {tool}, which is not a directory connector tool")
 
 # 5. Listing copy
 # Why: hype words and unmeasured claims are what an auditing buyer or reviewer rejects first.
@@ -129,16 +137,16 @@ def banned_words(path: Path, text: str, allow_ai_rank: bool = False) -> None:
         fail(f"{path.relative_to(ROOT)}: exclamation mark")
 
 
-for f in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"):
+for f in ("README.md", "CONNECTORS.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-plugin/marketplace.json"):
     p = ROOT / f
-    listing_words(p, p.read_text())
     banned_words(p, p.read_text())
 # Skills may name "AI rank" only inside the rule that forbids stating one.
 for s in skills:
     banned_words(s, s.read_text(), allow_ai_rank=True)
-for tool in set(re.findall(r"gravity_[a-z_]+", (ROOT / "README.md").read_text())):
-    if tool not in LIVE:
-        fail(f"README.md: names {tool}, which is not a deployed tool")
+for f in ("README.md", "CONNECTORS.md", "SUBMISSION.md"):
+    for tool in set(re.findall(TOOL_RE, (ROOT / f).read_text())):
+        if tool not in LIVE:
+            fail(f"{f}: names {tool}, which is not a directory connector tool")
 words = len(re.findall(r"[A-Za-z][A-Za-z'-]*", strip_code((ROOT / "README.md").read_text())))
 if words < 40:
     fail(f"README.md: {words} words outside code blocks (needs 40 or more)")
@@ -152,7 +160,7 @@ for p in tracked():
         fail(f"{rel}: over 256 KiB")
     if p.suffix.lower() not in IMAGE_EXT:
         try:
-            p.read_bytes().decode("utf-8")
+            listing_words(p, p.read_bytes().decode("utf-8"))
         except UnicodeDecodeError:
             fail(f"{rel}: non-image binary")
 
