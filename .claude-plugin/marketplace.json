@@ -1,6 +1,6 @@
 {
   "name": "advisorseo",
-  "description": "The AdvisorSEO plugin for Claude: get found in Google and in AI assistants, with approval-gated changes and measured results.",
+  "description": "The AdvisorSEO plugin for Claude: read your saved SEO workspace, review drafts and plan missing pages. Read-only.",
   "owner": {
     "name": "AdvisorSEO",
     "email": "support@advisorseo.ai",
@@ -9,7 +9,9 @@
   "plugins": [
     {
       "name": "advisorseo",
-      "source": "./"
+      "displayName": "AdvisorSEO",
+      "source": "./",
+      "category": "marketing"
     }
   ]
 }

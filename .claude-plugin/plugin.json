@@ -1,8 +1,8 @@
 {
   "name": "advisorseo",
   "displayName": "AdvisorSEO",
-  "version": "0.2.0",
-  "description": "Get found in Google and in AI assistants. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, reads your Search Console data, and makes approval-gated changes with measured results.",
+  "version": "0.3.0",
+  "description": "Read your saved AdvisorSEO workspace in Claude: websites, tracked keywords and saved content. Plan the pages you are missing and get edit suggestions for drafts. Read-only: it connects to mcp.advisorseo.ai with your own sign-in, cannot publish or edit anything, and ships no local code.",
   "author": {
     "name": "AdvisorSEO",
     "email": "support@advisorseo.ai",
@@ -11,7 +11,7 @@
   "homepage": "https://advisorseo.ai",
   "repository": "https://github.com/advisorppc-org/advisorseo-claude-plugin",
   "license": "MIT",
-  "keywords": ["seo", "ai-search", "geo", "aeo", "site-audit", "search-console", "wordpress", "llms-txt", "content", "leads"],
+  "keywords": ["seo", "content-planning", "keywords", "content-review", "content-gaps", "read-only", "marketing"],
   "icon": "./icon.png",
   "documentationUrl": "https://advisorseo.ai/docs",
   "supportUrl": "https://advisorseo.ai/support",
