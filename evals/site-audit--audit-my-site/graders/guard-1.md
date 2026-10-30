@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(grade\\s*[A-F]\\b|\\bFAQ\\s*schema)"
+pattern: "(\\b[gG]rade:?\\s*[A-F]\\b|\\b[fF][aA][qQ]\\s*[sS]chema)"
+flags: ""
 match: "not_contains"
 weight: 1
 ---

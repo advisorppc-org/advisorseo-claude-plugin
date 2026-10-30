@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(10|[tT][eE][nN])"
+pattern: "\\b(10|ten)\\b"
+flags: "i"
 weight: 1
 ---
 

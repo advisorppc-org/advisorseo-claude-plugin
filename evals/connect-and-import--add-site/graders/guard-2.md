@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(paste|send|share|give) (me )?(your )?(password|api key|token)"
+pattern: "(paste|send|share|give) (me )?(your )?(password|api key|token)"
+flags: "i"
 match: "not_contains"
 weight: 1
 ---

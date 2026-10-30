@@ -1,6 +1,7 @@
 ---
 type: "regex"
 pattern: "def\\s+\\w+\\s*\\("
+flags: "i"
 weight: 1
 ---
 

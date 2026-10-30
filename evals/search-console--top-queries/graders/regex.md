@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[cC][lL][iI][cC][kK]"
+pattern: "(impressions?|ctr|click-through|average position)"
+flags: "i"
 weight: 1
 ---
 

@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[lL][lL][mM][sS]\\.[tT][xX][tT]"
+pattern: "llms\\.txt"
+flags: "i"
 weight: 1
 ---
 

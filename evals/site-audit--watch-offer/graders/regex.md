@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "([wW][eE][eE][kK][lL][yY]|[sS][cC][hH][eE][dD][uU][lL][eE]|[wW][aA][tT][cC][hH])"
+pattern: "(weekly|schedule|watch)"
+flags: "i"
 weight: 1
 ---
 

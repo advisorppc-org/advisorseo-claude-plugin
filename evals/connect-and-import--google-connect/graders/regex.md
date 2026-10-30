@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[lL][iI][nN][kK]"
+pattern: "link"
+flags: "i"
 weight: 1
 ---
 

@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "([nN][oO][tT][eE]|[cC][hH][aA][nN][nN][eE][lL]|[wW][hH][eE][nN])"
+pattern: "(note|channel|when)"
+flags: "i"
 weight: 1
 ---
 

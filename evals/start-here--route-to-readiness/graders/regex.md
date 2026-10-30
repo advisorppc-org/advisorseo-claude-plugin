@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "([oO][kK]|[bB][lL][oO][cC][kK][eE][dD])"
+pattern: "\\b(ok|blocked)\\b"
+flags: "i"
 weight: 1
 ---
 

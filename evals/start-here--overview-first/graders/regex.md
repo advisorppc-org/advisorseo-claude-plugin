@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[bB][rR][iI][gG][hH][tT][pP][lL][uU][mM][bB][iI][nN][gG]\\.[eE][xX][aA][mM][pP][lL][eE]"
+pattern: "brightplumbing\\.example"
+flags: "i"
 weight: 1
 ---
 

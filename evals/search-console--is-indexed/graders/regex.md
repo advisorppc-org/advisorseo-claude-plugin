@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[iI][nN][dD][eE][xX]"
+pattern: "(inspection|coverage|crawl)"
+flags: "i"
 weight: 1
 ---
 

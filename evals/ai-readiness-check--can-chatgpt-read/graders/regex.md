@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?is)PerplexityBot.{0,200}blocked"
+pattern: "PerplexityBot.{0,200}blocked"
+flags: "is"
 weight: 1
 ---
 

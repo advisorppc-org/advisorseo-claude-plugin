@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "([vV][eE][rR][sS][iI][oO][nN]|[sS][uU][bB][mM][iI][tT])"
+pattern: "(version|submit)"
+flags: "i"
 weight: 1
 ---
 

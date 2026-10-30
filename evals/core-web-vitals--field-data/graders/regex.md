@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "[fF][iI][eE][lL][dD]"
+pattern: "field"
+flags: "i"
 weight: 1
 ---
 

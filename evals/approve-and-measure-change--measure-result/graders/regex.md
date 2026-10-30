@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "([iI][nN][sS][uU][fF][fF][iI][cC][iI][eE][nN][tT] [dD][aA][tT][aA]|[iI][nN][tT][eE][rR][vV][aA][lL]|\\[bB][nN]\\[sS]*=)"
+pattern: "(insufficient data|interval|\\bn\\s*=)"
+flags: "i"
 weight: 1
 ---
 

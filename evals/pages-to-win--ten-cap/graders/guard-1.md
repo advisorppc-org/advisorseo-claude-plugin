@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(rank(ed|s)?\\s*(#|number|no\\.?)\\s*\\d|position\\s*#?\\d+\\s*(in|on)\\s*(chatgpt|claude|perplexity|gemini))"
+pattern: "(rank(ed|s)?\\s*(#|number|no\\.?)\\s*\\d|position\\s*#?\\d+\\s*(in|on)\\s*(chatgpt|claude|perplexity|gemini))"
+flags: "i"
 match: "not_contains"
 weight: 1
 ---
