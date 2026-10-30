@@ -173,9 +173,11 @@ for g in sorted(ROOT.glob("evals/*/graders/*.md")):
     pattern = found.group(1).encode().decode("unicode_escape")
     if re.search(r"\(\?[a-zA-Z]+\)", pattern):
         fail(f"{rel}: inline flags throw in the eval runner; use a flags field")
-    flags = re.search(r'^flags: "([a-z]*)"$', head, re.M)
+    flags = re.search(r'^flags: "(.*)"$', head, re.M)
     if flags and set(flags.group(1)) - set("dgimsuvy"):
         fail(f"{rel}: flags the eval runner does not know")
+    if "(?P<" in pattern:
+        fail(f"{rel}: Python-only named group; the eval runner uses JavaScript")
     try:
         re.compile(pattern)
     except re.error as e:

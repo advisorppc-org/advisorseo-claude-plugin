@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(period|week|month|insufficient data)"
+pattern: "(periods?\\b|\\bweeks?\\b|\\d{4}-\\d{2}|insufficient data)"
 flags: "i"
 weight: 1
 ---

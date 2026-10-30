@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(\\d[\\d,]*\\s+sessions?|sessions?\\W{1,6}\\d|landingPage)"
+pattern: "(812|landingPage|insufficient data)"
 flags: "i"
 weight: 1
 ---
