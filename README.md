@@ -76,7 +76,7 @@ Why: an owner wants the site improved without having to ask each time, and witho
 
 AdvisorSEO watches the site (**site-audit** with a recurring watch, **ai-readiness-check**), proposes each change with its reason and the metric it should move (**site-audit**, **pages-to-win**), asks for one approval and applies it (**approve-and-measure-change**), then measures and reports the result with n and an interval, or "insufficient data" (**approve-and-measure-change**, **leads**).
 
-## Every write asks first
+## Changes ask first
 
 Why: these tools can change a live website, so a preview and a separate approval turn are the safety line.
 
