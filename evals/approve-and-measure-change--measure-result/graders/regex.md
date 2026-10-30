@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(insufficient data|interval|\\bn\\s*=)"
+pattern: "(insufficient data|interval|\\bn\\s*=)"
+flags: "i"
 weight: 1
 ---
 

@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)application password"
+pattern: "application password"
+flags: "i"
 weight: 1
 ---
 

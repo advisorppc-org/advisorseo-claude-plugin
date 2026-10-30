@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(version|submit)"
+pattern: "(version|submit)"
+flags: "i"
 weight: 1
 ---
 

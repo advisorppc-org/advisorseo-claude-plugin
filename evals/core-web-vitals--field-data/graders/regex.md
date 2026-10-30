@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)field"
+pattern: "field"
+flags: "i"
 weight: 1
 ---
 

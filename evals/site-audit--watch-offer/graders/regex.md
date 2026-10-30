@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(weekly|schedule|watch)"
+pattern: "(weekly|schedule|watch)"
+flags: "i"
 weight: 1
 ---
 

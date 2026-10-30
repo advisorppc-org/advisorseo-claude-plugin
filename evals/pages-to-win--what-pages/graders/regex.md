@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(missing page|weak page|not crawlable|not citable|wrong intent)"
+pattern: "(missing page|weak page|not crawlable|not citable|wrong intent)"
+flags: "i"
 weight: 1
 ---
 

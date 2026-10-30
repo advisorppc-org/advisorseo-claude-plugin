@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)brightplumbing\\.example"
+pattern: "brightplumbing\\.example"
+flags: "i"
 weight: 1
 ---
 

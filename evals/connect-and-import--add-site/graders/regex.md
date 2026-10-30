@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)wordpress"
+pattern: "wordpress"
+flags: "i"
 weight: 1
 ---
 

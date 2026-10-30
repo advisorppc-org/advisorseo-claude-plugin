@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)llms\\.txt"
+pattern: "llms\\.txt"
+flags: "i"
 weight: 1
 ---
 

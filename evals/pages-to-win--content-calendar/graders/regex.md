@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(metric|clicks|impressions|leads)"
+pattern: "(metric|clicks|impressions|leads)"
+flags: "i"
 weight: 1
 ---
 

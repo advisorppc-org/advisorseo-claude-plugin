@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)click"
+pattern: "(impressions?|ctr|click-through|average position)"
+flags: "i"
 weight: 1
 ---
 

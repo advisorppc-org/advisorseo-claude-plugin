@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)link"
+pattern: "link"
+flags: "i"
 weight: 1
 ---
 

@@ -158,6 +158,31 @@ for p in tracked():
         except UnicodeDecodeError:
             fail(f"{rel}: non-image binary")
 
+# 6. Eval graders
+# Why: the eval runner compiles patterns as JavaScript, so an inline (?i) throws, the grader fails, and no
+# skill can pass the case. CI never runs evals, so this is the only check that sees it before a release.
+for g in sorted(ROOT.glob("evals/*/graders/*.md")):
+    head = g.read_text(encoding="utf-8").split("---")[1]
+    if 'type: "regex"' not in head:
+        continue
+    found = re.search(r'^pattern: "(.*)"$', head, re.M)
+    rel = g.relative_to(ROOT)
+    if not found:
+        fail(f"{rel}: regex grader with no pattern")
+        continue
+    pattern = found.group(1).encode().decode("unicode_escape")
+    if re.search(r"\(\?[a-zA-Z]+\)", pattern):
+        fail(f"{rel}: inline flags throw in the eval runner; use a flags field")
+    flags = re.search(r'^flags: "(.*)"$', head, re.M)
+    if flags and set(flags.group(1)) - set("dgimsuvy"):
+        fail(f"{rel}: flags the eval runner does not know")
+    if "(?P<" in pattern:
+        fail(f"{rel}: Python-only named group; the eval runner uses JavaScript")
+    try:
+        re.compile(pattern)
+    except re.error as e:
+        fail(f"{rel}: pattern does not compile: {e}")
+
 print(f"skills: {len(skills)}; README words outside code: {words}; tracked files: {len(tracked())}")
 if errors:
     print("FAIL")

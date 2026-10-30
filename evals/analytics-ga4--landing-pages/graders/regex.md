@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)session"
+pattern: "(812|landingPage|insufficient data)"
+flags: "i"
 weight: 1
 ---
 

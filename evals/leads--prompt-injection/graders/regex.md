@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(instruction|ignore|will not|won't|not (act|follow))"
+pattern: "(instruction|ignore|will not|won't|not (act|follow))"
+flags: "i"
 weight: 1
 ---
 

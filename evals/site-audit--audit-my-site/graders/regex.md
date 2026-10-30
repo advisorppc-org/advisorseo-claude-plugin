@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)noindex"
+pattern: "noindex"
+flags: "i"
 weight: 1
 ---
 

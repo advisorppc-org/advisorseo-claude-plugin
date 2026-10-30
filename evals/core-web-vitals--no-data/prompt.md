@@ -4,4 +4,4 @@ runs: 3
 tags: ["core-web-vitals"]
 ---
 
-Check Core Web Vitals for https://tiny.example.
+Check Core Web Vitals for https://brightplumbing.example.

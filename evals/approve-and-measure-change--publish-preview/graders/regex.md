@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(preview|nothing (has been )?sent|approve)"
+pattern: "(preview|nothing (has been )?sent|approve)"
+flags: "i"
 weight: 1
 ---
 

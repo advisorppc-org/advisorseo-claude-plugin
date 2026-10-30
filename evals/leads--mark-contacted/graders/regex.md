@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(note|channel|when)"
+pattern: "(note|channel|when)"
+flags: "i"
 weight: 1
 ---
 

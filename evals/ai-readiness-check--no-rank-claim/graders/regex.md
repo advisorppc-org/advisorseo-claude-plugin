@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(insufficient data|not measure|cannot (tell|give|state)|does not (measure|track) (rank|position))"
+pattern: "(insufficient data|not measure|does(n't| not) (measure|track)|can(not|'t) (tell|give|state|see|measure)|crawler access)"
+flags: "i"
 weight: 1
 ---
 

@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(stream|retention|key event)"
+pattern: "(stream|retention|key event)"
+flags: "i"
 weight: 1
 ---
 

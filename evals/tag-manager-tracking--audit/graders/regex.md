@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)tag"
+pattern: "(paused|no trigger|without a trigger|consent)"
+flags: "i"
 weight: 1
 ---
 

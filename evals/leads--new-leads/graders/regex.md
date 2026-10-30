@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)Dana Ortiz"
+pattern: "dana ortiz"
+flags: "i"
 weight: 1
 ---
 

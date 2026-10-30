@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(confirm|approve|go ahead|yes)"
+pattern: "(confirm|approve|go ahead|yes)"
+flags: "i"
 weight: 1
 ---
 

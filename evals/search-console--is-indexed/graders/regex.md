@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)index"
+pattern: "(inspection|coverage|crawl)"
+flags: "i"
 weight: 1
 ---
 

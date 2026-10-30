@@ -1,6 +1,7 @@
 ---
 type: "regex"
-pattern: "(?i)(ok|blocked)"
+pattern: "\\b(ok|blocked)\\b"
+flags: "i"
 weight: 1
 ---
 
