@@ -18,6 +18,8 @@ ALLOWED_FM = {"name", "description", "license", "metadata"}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
 BANNED_EXT = {".zip", ".pdf", ".ico", ".tar", ".gz", ".tgz", ".exe", ".bin", ".dll", ".so", ".dylib", ".jar", ".whl"}
 REPO_SLUG = "advisorppc-org/advisorseo-claude-plugin"
+# Every wire prefix a skill may name. Hyphenated words such as gtm-container never match.
+TOOL_NAME = r"\b(?:gravity|gtm|ga4|gsc|crux)_[a-z0-9_]+"
 
 
 def fail(msg: str) -> None:
@@ -108,7 +110,7 @@ for s in skills:
         fail(f"{s.relative_to(ROOT)}: no Check section")
     if "insufficient data" not in body:
         fail(f"{s.relative_to(ROOT)}: no 'insufficient data' rule")
-    for tool in set(re.findall(r"gravity_[a-z_]+", text)):
+    for tool in set(re.findall(TOOL_NAME, text)):
         if tool not in LIVE:
             fail(f"{s.relative_to(ROOT)}: names {tool}, which is not a deployed tool")
     listing_words(s, text)
@@ -136,7 +138,7 @@ for f in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-p
 # Skills may name "AI rank" only inside the rule that forbids stating one.
 for s in skills:
     banned_words(s, s.read_text(), allow_ai_rank=True)
-for tool in set(re.findall(r"gravity_[a-z_]+", (ROOT / "README.md").read_text())):
+for tool in set(re.findall(TOOL_NAME, (ROOT / "README.md").read_text())):
     if tool not in LIVE:
         fail(f"README.md: names {tool}, which is not a deployed tool")
 words = len(re.findall(r"[A-Za-z][A-Za-z'-]*", strip_code((ROOT / "README.md").read_text())))

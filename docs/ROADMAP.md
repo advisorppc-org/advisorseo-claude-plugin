@@ -2,15 +2,12 @@
 
 Why: a skill that names a tool the deployed connector does not have fails in front of a user. Skills that wait for tools are written down here and ship only when their tools are live on mcp.advisorseo.ai.
 
-## v0.3.0 (waits for deployed tools)
+## Next (waits for deployed tools)
 
 Each entry names the user question, the tools it needs, and the gate. Exact tool names are taken from the advisorseo-mcp main branch when it deploys; this lane could not read that branch, so names below are the capability, not the wire name.
 
 ### search-console-wins
-- Ask: "Which queries am I close to winning?", "what does Search Console say?"
-- Needs: the Google connection status tool and the Search Console read tools (queries, pages, URL inspection) on the deployed connector.
-- Output: up to 10 queries with clicks, impressions and position from Search Console (Google's own average position, never an AI rank), each with n plus an interval for click-through rate, or "insufficient data".
-- Gate: tools listed by `tools/list` on mcp.advisorseo.ai, and a Google-connected test workspace.
+- Shipped in 0.3.0 as search-console, with analytics-ga4, tag-manager-tracking and core-web-vitals.
 
 ### change-proposals
 - Ask: "What would you change this week?", "show me the proposals".

@@ -1,0 +1,9 @@
+{
+  "data": {
+    "builtInVariable": [
+      {
+        "type": "pageUrl"
+      }
+    ]
+  }
+}

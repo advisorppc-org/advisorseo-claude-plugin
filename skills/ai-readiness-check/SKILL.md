@@ -3,7 +3,7 @@ name: ai-readiness-check
 description: Use for AI search readiness and AI crawler access, for example "can ChatGPT read my site", "is my site blocked for AI", "check GPTBot, ClaudeBot, PerplexityBot or Google-Extended", "AI visibility check", "is my robots.txt blocking AI", "do I need llms.txt", or "GEO readiness". Checks each AI search and user-fetch bot against the live site, runs the readiness checklist, and reports every bot as ok or blocked with the reason.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # AI readiness check

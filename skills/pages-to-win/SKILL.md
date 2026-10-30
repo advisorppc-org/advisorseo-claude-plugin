@@ -3,7 +3,7 @@ name: pages-to-win
 description: Use for choosing what to write or improve, for example "what pages should I create", "what should we write about", "which keywords can we win", "plan my content", "build a content calendar", "turn these keywords into a plan", "where are my content gaps", or "plan three months of posts". Reads the business profile, stored keywords and the existing plan, then proposes at most 10 pages to win, each with a gap type and the metric it should move, and saves the approved ones to the plan.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Pages to win

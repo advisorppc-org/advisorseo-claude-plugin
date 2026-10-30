@@ -3,7 +3,7 @@ name: approve-and-measure-change
 description: Use for any change to a live website or to stored content, for example "publish that post", "push it live", "send the article to WordPress", "stage it as a WordPress draft", "write the page", "save this draft", "update the page", "publish my AdvisorSEO site", "take the page down", or "did the change work". Previews every write, waits for an explicit approval turn, makes the change, and sets up how its result will be measured.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Approve and measure a change

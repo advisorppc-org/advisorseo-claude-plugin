@@ -3,7 +3,7 @@ name: leads
 description: Use for the leads a website has captured, for example "any new leads", "who came in this week", "show my enquiries", "mark that lead contacted", "add a note to this lead", "what happened with the Johnson lead", or "how is the pipeline looking". Lists new leads, opens one with its full history, and moves leads through new, contacted, qualified, converted or lost with a note on each move.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Leads
