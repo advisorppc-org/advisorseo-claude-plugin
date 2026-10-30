@@ -80,7 +80,7 @@ AdvisorSEO watches the site (**site-audit** with a recurring watch, **ai-readine
 
 Why: these tools can change a live website, so a preview and a separate approval turn are the safety line.
 
-The first call to a tool that changes your site, your records or your Google accounts changes nothing and returns a preview. The change happens only when the tool is called again with `confirm=true`, after you approve in your own next message. Two tools save without a preview, and neither touches your site or Google: `gravity_geo_pagespeed` saves a PageSpeed measurement, and `gravity_google_set_properties` records which Google properties belong to a site after you choose them. These are the tools the skills use that change something:
+The first call to a tool that changes your site, your records or your Google accounts changes nothing and returns a preview. The change happens only when the tool is called again with `confirm=true`, after you approve in your own next message. One tool saves without a preview, and it touches neither your site nor Google: `gravity_geo_pagespeed` saves a PageSpeed measurement. These are the tools the skills use that change something:
 
 | Write tool | What it changes |
 |---|---|

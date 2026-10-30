@@ -34,7 +34,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 ### One-liner (200 characters or fewer)
 
-Get found in Google and in AI assistants: AI-crawler readiness, site audits, Search Console, GA4 and Tag Manager, with every change previewed and approved first.
+Get found in Google and in AI assistants: AI-crawler readiness, site audits, Search Console, GA4 and Tag Manager, with changes to your site and Google previewed and approved first.
 
 ### Description (2,000 characters or fewer)
 
@@ -42,7 +42,7 @@ AdvisorSEO helps a business get found in Google and in the answers AI assistants
 
 It works on its own: it watches the site, proposes each change with its reason, asks for one approval, applies it, then measures and reports the result with n and an interval, or insufficient data (site-audit and ai-readiness-check watch, site-audit and pages-to-win propose, approve-and-measure-change applies and measures, leads reports pipeline results).
 
-Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no key or password is ever pasted. Tokens carry the scopes mcp:tools and mcp:read. Nothing changes on your site without your yes. Every write first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
+Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no key or password is ever pasted. Tokens carry the scopes mcp:tools and mcp:read. Nothing changes on your site without your yes. Every change to a site, a record or a Google account first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
 
 Every result statement comes with n and an interval, or the words "insufficient data", and AdvisorSEO never claims a rank position inside an AI assistant. It never scrapes consumer AI apps.
 
@@ -67,7 +67,7 @@ The plugin bundles the AdvisorSEO connector and eleven skills: start-here, ai-re
 | What data does the plugin access? | The user's AdvisorSEO workspace: sites, business profile, keywords, plans, content and leads. Public pages of the user's site for audits and crawler checks. Search Console and Analytics only for properties the user connected. Google Search Console, Analytics and Tag Manager for accounts the user connects. |
 | Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth (Search Console, Analytics, Tag Manager), Chrome UX Report under AdvisorSEO's API key (public URLs only), Google PageSpeed Insights (public URLs), the user's WordPress site on a confirmed publish. |
 | Does the plugin run local code? | No. Skills are text; the connector is remote over https. |
-| Does it write? | Yes, through the tools listed in README.md, including Search Console, Analytics and Tag Manager. Changes preview first and wait for an approval turn; the README names the two that only save a record. |
+| Does it write? | Yes, through the tools listed in README.md, including Search Console, Analytics and Tag Manager. Changes preview first and wait for an approval turn; the README names the one that only saves a measurement. |
 | Credentials | OAuth through Claude's credential store. Nothing is pasted into chat. WordPress uses an application password stored on the site record. |
 | Storage | The encrypted Google connection and chosen properties, and rank and PageSpeed snapshots the user runs. Other Google reports are not stored. |
 | Retention and deletion | As stated at https://advisorseo.ai/privacy. |
