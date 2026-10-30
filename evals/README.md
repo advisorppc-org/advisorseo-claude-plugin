@@ -13,7 +13,7 @@ Why: a skill change that stops the right tool from being called, or lets a write
 
 ## Who runs them, and when
 
-The lead runs them on a Claude seat before each release. They never run in CI: each run is real model usage on a real account.
+The maintainers run them before each release. They never run in CI: each run is real model usage on a real account.
 
 ```
 claude plugin eval . --trust-plugin --judge-model sonnet --runs 3 -j 2

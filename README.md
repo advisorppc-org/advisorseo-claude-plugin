@@ -80,7 +80,7 @@ AdvisorSEO watches the site (**site-audit** with a recurring watch, **ai-readine
 
 Why: these tools can change a live website, so a preview and a separate approval turn are the safety line.
 
-The first call to a write tool changes nothing and returns a preview. The change happens only when the tool is called again with `confirm=true`, after you approve in your own next message. These are the tools the skills use that change something:
+The first call to a tool that changes your site, your records or your Google accounts changes nothing and returns a preview. The change happens only when the tool is called again with `confirm=true`, after you approve in your own next message. Two tools save without a preview, and neither touches your site or Google: `gravity_geo_pagespeed` saves a PageSpeed measurement, and `gravity_google_set_properties` records which Google properties belong to a site after you choose them. These are the tools the skills use that change something:
 
 | Write tool | What it changes |
 |---|---|
@@ -95,8 +95,11 @@ The first call to a write tool changes nothing and returns a preview. The change
 | `gravity_audit_domain`, `gravity_audit_watch` | Starts an audit run, or a recurring audit schedule |
 | `gravity_crawl_site` | Imports your site's public pages into your AdvisorSEO workspace |
 | `gravity_gsc_submit_sitemap`, `gsc_sitemaps_delete`, `gsc_sites_add`, `gsc_sites_delete` | Your Google Search Console account |
-| `ga4_*` tools that create, patch, update, archive or delete | Your Google Analytics 4 account and properties |
-| `gtm_*` tools that create, update, delete, revert, sync or combine | Draft workspaces and containers in your Google Tag Manager account |
+| `gravity_seo_checklist_run` | Runs the SEO checklist and saves the result in your workspace |
+| `gravity_geo_pagespeed` | Saves a PageSpeed measurement in your workspace, with no preview |
+| `gravity_google_set_properties` | Records the Google properties chosen for a site |
+| `ga4_*` tools that create, patch, update, archive, delete, approve, cancel, provision, reorder or link | Your Google Analytics 4 account and properties. A link shares a property's data with the linked product |
+| `gtm_*` tools that create, update, delete, revert, sync, combine, move, link or import | Draft workspaces and containers in your Google Tag Manager account |
 | `gtm_versions_publish`, `gtm_versions_set_latest` | The Tag Manager version live on your website, or the one marked latest |
 
 Google writes also need your Google consent. AdvisorSEO's first Google link asks for read-only access to Search Console and Analytics. Tag Manager reads and each kind of change ask the first time you use them, with a link that adds only that permission.
@@ -113,9 +116,11 @@ Why: you should know every place your data goes before you install anything.
 | app.advisorseo.ai | Sign-in and the OAuth consent page; your account, plan and Google connection | At install, and when you manage your account |
 | Your website (public pages, robots.txt, llms.txt) | Fetched by the AdvisorSEO server, the way a crawler would | Audits, AI readiness checks, crawls |
 | Google APIs, under your own Google OAuth consent | Search Console, Analytics and Tag Manager reads, and the writes you approve | Only after you open the Google connect link and approve |
-| Google Chrome UX Report | The public URL or origin being checked | Core Web Vitals checks |
+| Google Chrome UX Report | The public URL or origin being checked, under AdvisorSEO's own API key | Core Web Vitals checks |
 | Google PageSpeed Insights | The public URL of the page being checked | Page speed checks |
 | Your WordPress site, with the application password you stored | The article you approved | Only on a confirmed publish |
+
+AdvisorSEO stores your encrypted Google connection and chosen properties, and any rank snapshot or PageSpeed measurement you run. Other Google reports are returned and not stored. Ask Claude to disconnect Google for a site to delete its connection; https://advisorseo.ai/privacy has the detail.
 
 The plugin itself runs no local code: it ships skills (text), an icon and one remote connector address. Nothing personal is stored in this repository. Your authorization is held in Claude's own credential store and can be revoked by removing the plugin or disconnecting Claude from your AdvisorSEO account.
 

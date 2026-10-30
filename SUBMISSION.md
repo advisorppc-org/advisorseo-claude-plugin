@@ -1,6 +1,6 @@
 # Directory submission pack
 
-Why: every field the claude.ai/directory/manage portal asks for is prepared here, so the owner submits in one sitting and the listing copy is reviewed in git before it is public.
+Why: every field the claude.ai/directory/manage portal asks for is prepared here, so the submission happens in one sitting and the listing copy is reviewed in git before it is public.
 
 Order: submit the MCP connector first, then the plugin paired with it. Updates ship by merging to the tracked branch (`main`).
 
@@ -12,7 +12,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 | Server URL | https://mcp.advisorseo.ai/mcp |
 | Transport | Streamable HTTP, https only |
 | Authentication | OAuth (sign-in and consent at app.advisorseo.ai) |
-| Tool count | 336 (read-only and write tools, annotated; each write previews first) |
+| Tool count | 336 (read-only and write tools, annotated; writes to a site, a record or a Google account preview first) |
 
 ## 2. Plugin submission
 
@@ -64,11 +64,12 @@ The plugin bundles the AdvisorSEO connector and eleven skills: start-here, ai-re
 
 | Question | Answer |
 |---|---|
-| What data does the plugin access? | The user's AdvisorSEO workspace: sites, business profile, keywords, plans, content and leads. Public pages of the user's site for audits and crawler checks. Search Console and Analytics only for properties the user connected. |
-| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth (Search Console, Analytics, Tag Manager, Chrome UX Report), Google PageSpeed Insights (public URLs), the user's WordPress site on a confirmed publish. |
+| What data does the plugin access? | The user's AdvisorSEO workspace: sites, business profile, keywords, plans, content and leads. Public pages of the user's site for audits and crawler checks. Search Console and Analytics only for properties the user connected. Google Search Console, Analytics and Tag Manager for accounts the user connects. |
+| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth (Search Console, Analytics, Tag Manager), Chrome UX Report under AdvisorSEO's API key (public URLs only), Google PageSpeed Insights (public URLs), the user's WordPress site on a confirmed publish. |
 | Does the plugin run local code? | No. Skills are text; the connector is remote over https. |
-| Does it write? | Yes, only through the write tools listed in README.md, each preview-first and confirmed after an explicit user approval turn. |
+| Does it write? | Yes, through the tools listed in README.md, including Search Console, Analytics and Tag Manager. Changes preview first and wait for an approval turn; the README names the two that only save a record. |
 | Credentials | OAuth through Claude's credential store. Nothing is pasted into chat. WordPress uses an application password stored on the site record. |
+| Storage | The encrypted Google connection and chosen properties, and rank and PageSpeed snapshots the user runs. Other Google reports are not stored. |
 | Retention and deletion | As stated at https://advisorseo.ai/privacy. |
 | Consumer AI apps | Never scraped or queried. |
 | Payments | Payments processed by Stripe under the AdvisorSEO label. The plugin itself takes no payment. |
@@ -79,12 +80,11 @@ Why: ownership of the listing is the irreversible part, and the brand shown must
 
 | Field | Value |
 |---|---|
-| Publisher shown | AdvisorSEO (decided by the owner, 2026-10-15) |
-| Legal entity | Advisor Media Group LLC (decided by the owner, 2026-10-15; also the LICENSE copyright holder) |
-| Submitting account | The same claude.ai organization that already holds the company's existing directory listing (decided by the owner, 2026-10-15) |
+| Publisher shown | AdvisorSEO |
+| Legal entity | Advisor Media Group LLC (also the LICENSE copyright holder) |
+| Submitting account | The same claude.ai organization that already holds the company's existing directory listing |
 | Support contact | support@advisorseo.ai |
-| Security contact | Recommended: security@advisorseo.ai. Owner decision pending. |
-| Security page | Recommended: https://advisorseo.ai/security, listing the controls below. Owner decision pending (the URL returns 404 today). |
+| Security contact | support@advisorseo.ai until a security address exists. |
 
 Why: enterprise buyers, and the agents acting for them, pick the vendor whose controls they can audit, and the portal asks for a security contact.
 
@@ -106,8 +106,6 @@ Not stated in listing copy until confirmed (lead to verify on the deployed conne
 
 Why: each of these stops or delays review.
 
-1. Repository visibility: the repo must be public before the listing goes live.
-2. Security contact and a /security page: not live on advisorseo.ai (https://advisorseo.ai/security returns 404).
-3. Repository slug: install lines and the repository URL contain the GitHub organization name, which carries the parent company name. Moving the repo to an AdvisorSEO-named organization would remove it from the listing copy.
+1. Repository slug: install lines and the repository URL contain the GitHub organization name, which carries the parent company name. Moving the repo to an AdvisorSEO-named organization would remove it from the listing copy.
 
 All four URL fields were checked with curl on 2026-10-15 and return 200 with AdvisorSEO page titles: /docs, /support, /privacy, /terms.

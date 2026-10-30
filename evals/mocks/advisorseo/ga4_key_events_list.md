@@ -1,0 +1,9 @@
+{
+  "data": {
+    "keyEvents": [
+      {
+        "eventName": "purchase"
+      }
+    ]
+  }
+}

@@ -15,7 +15,7 @@ Why: field data is what Google measures from real Chrome users, and a single lab
 1. Name the source of every number. Field data is real Chrome users over 28 days at the 75th percentile. A lab test is one simulated load.
 2. `no_field_data` means too little Chrome traffic to publish. It is neither a failure nor a zero. A metric Google did not return is unknown, never zero.
 3. A trend claim needs the periods shown, or the words "insufficient data". Never promise a ranking gain from a speed fix.
-4. `gravity_geo_pagespeed` stores its snapshot, so it previews first: wait for the user's yes in a new turn, then call again with `confirm=true`.
+4. `gravity_geo_pagespeed` saves its snapshot in the workspace as soon as it runs, with no preview. Say so before calling it. It changes nothing on the site.
 
 ## Steps
 
