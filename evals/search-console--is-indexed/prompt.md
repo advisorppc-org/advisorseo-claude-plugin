@@ -4,4 +4,4 @@ runs: 3
 tags: ["search-console"]
 ---
 
-Is https://example.com/pricing indexed in Google?
+Is https://brightplumbing.example/pricing indexed in Google?
