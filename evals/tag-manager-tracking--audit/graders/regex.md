@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)tag"
+pattern: "[tT][aA][gG]"
 weight: 1
 ---
 

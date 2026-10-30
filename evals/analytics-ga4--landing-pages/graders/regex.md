@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)session"
+pattern: "[sS][eE][sS][sS][iI][oO][nN]"
 weight: 1
 ---
 

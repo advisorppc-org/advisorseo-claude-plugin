@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)wordpress"
+pattern: "[wW][oO][rR][dD][pP][rR][eE][sS][sS]"
 weight: 1
 ---
 

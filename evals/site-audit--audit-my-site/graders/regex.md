@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)noindex"
+pattern: "[nN][oO][iI][nN][dD][eE][xX]"
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)field"
+pattern: "[fF][iI][eE][lL][dD]"
 weight: 1
 ---
 

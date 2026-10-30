@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)(10|ten)"
+pattern: "(10|[tT][eE][nN])"
 weight: 1
 ---
 

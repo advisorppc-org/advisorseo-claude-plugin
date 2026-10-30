@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)Dana Ortiz"
+pattern: "[dD][aA][nN][aA] [oO][rR][tT][iI][zZ]"
 weight: 1
 ---
 

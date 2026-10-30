@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)preview"
+pattern: "[pP][rR][eE][vV][iI][eE][wW]"
 weight: 1
 ---
 

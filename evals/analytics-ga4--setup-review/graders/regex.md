@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)(stream|retention|key event)"
+pattern: "([sS][tT][rR][eE][aA][mM]|[rR][eE][tT][eE][nN][tT][iI][oO][nN]|[kK][eE][yY] [eE][vV][eE][nN][tT])"
 weight: 1
 ---
 

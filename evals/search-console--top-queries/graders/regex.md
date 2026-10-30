@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)click"
+pattern: "[cC][lL][iI][cC][kK]"
 weight: 1
 ---
 

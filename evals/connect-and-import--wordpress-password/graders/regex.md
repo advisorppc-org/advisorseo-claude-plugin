@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)application password"
+pattern: "[aA][pP][pP][lL][iI][cC][aA][tT][iI][oO][nN] [pP][aA][sS][sS][wW][oO][rR][dD]"
 weight: 1
 ---
 

@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(?i)(confirm|approve|go ahead|yes)"
+pattern: "([cC][oO][nN][fF][iI][rR][mM]|[aA][pP][pP][rR][oO][vV][eE]|[gG][oO] [aA][hH][eE][aA][dD]|[yY][eE][sS])"
 weight: 1
 ---
 
