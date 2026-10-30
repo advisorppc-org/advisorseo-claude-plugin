@@ -3,4 +3,4 @@ type: "llm"
 weight: 2
 ---
 
-The reply says Google is connected once at app.advisorseo.ai with Google's own sign-in, under the user's consent, and never asks for credentials in chat.
+The reply gives or offers a Google consent link the site owner opens in their own browser, and never asks for credentials in chat.

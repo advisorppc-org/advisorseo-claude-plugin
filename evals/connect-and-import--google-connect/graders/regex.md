@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "app\\.advisorseo\\.ai"
+pattern: "(?i)link"
 weight: 1
 ---
 

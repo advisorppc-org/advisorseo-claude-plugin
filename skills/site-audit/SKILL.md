@@ -3,7 +3,7 @@ name: site-audit
 description: Use for a website audit or technical SEO review, for example "audit my site", "what is wrong with my website", "run an SEO audit", "check my site health", "what changed since the last audit", "watch my site for problems", or "show the audit findings". Runs an audit of the live domain, reads its findings in plain priority order, compares with earlier runs, and can put the domain on a recurring watch.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Site audit

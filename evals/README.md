@@ -2,7 +2,7 @@
 
 Why: a skill change that stops the right tool from being called, or lets a write through without approval, must be caught before a release reaches users.
 
-21 cases, 3 per skill, in the `claude plugin eval` layout: `evals/<skill>--<case>/prompt.md` holds the user prompt, and `graders/` holds one file per check:
+33 cases, 3 per skill, in the `claude plugin eval` layout: `evals/<skill>--<case>/prompt.md` holds the user prompt, and `graders/` holds one file per check:
 
 - `tool.md`: the expected tool (`tool_used`), or for the should-not-fire case, that no AdvisorSEO tool is called.
 - `regex.md`: a pattern the reply must contain.

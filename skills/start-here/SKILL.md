@@ -3,7 +3,7 @@ name: start-here
 description: Use first in any AdvisorSEO conversation, for example "what can AdvisorSEO do", "how is my site doing", "where do I start", "show my SEO workspace", "which sites do I have", or any SEO, AI search, AI visibility, site audit, keyword, content or lead request where no site has been picked yet. Reads the workspace overview, picks the right site, and routes to the skill that fits the request.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Start here: the first-call recipe
@@ -31,6 +31,10 @@ Why: every other AdvisorSEO skill needs the right site id. Guessing one reads or
    - "What should I write", "which pages can win" goes to **pages-to-win**.
    - "Publish", "change the page", "push it live" goes to **approve-and-measure-change**.
    - "Any new leads?" goes to **leads**.
+   - "What does Search Console say", "is this page indexed", "my sitemap" goes to **search-console**.
+   - "How is my traffic", "GA4", "key events" goes to **analytics-ga4**.
+   - "Is my tracking right", "GTM", "add a tag" goes to **tag-manager-tracking**.
+   - "Is my site fast", "Core Web Vitals" goes to **core-web-vitals**.
 4. Say in one line which site you picked and why, then continue in the chosen skill.
 
 ## Check

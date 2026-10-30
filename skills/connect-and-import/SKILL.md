@@ -3,7 +3,7 @@ name: connect-and-import
 description: Use for setting up a website in AdvisorSEO, for example "add my site", "connect my website", "set up AdvisorSEO", "import my site", "connect WordPress", "connect Google Search Console", "what platform is my site on", or "fill in my business profile". Detects the site's platform, creates the site record, saves the business profile, and explains where WordPress and Google connections are made.
 license: MIT
 metadata:
-  version: 0.2.0
+  version: 0.3.0
 ---
 
 # Connect and import a site
@@ -12,7 +12,7 @@ Why: every other skill works from the site record and the business profile. Gett
 
 ## Rules that come first
 
-1. Never ask for a password, API key, token or authorization header in the chat. Google is connected in the AdvisorSEO web app at https://app.advisorseo.ai with Google's own sign-in. WordPress uses an application password the user stores on the site record, never their login password.
+1. Never ask for a password, API key, token or authorization header in the chat. Google is connected through a consent link the site owner opens in their own browser.
 2. Creating a site, updating it and saving the profile are writes. Show the preview, wait for the user's yes in a new turn, then call with `confirm=true`.
 3. Check `gravity_list_sites` before creating a site, so the same domain is not added twice.
 4. Any rate you report comes with its n plus an interval, or the words "insufficient data". Never state an AI rank position.
@@ -24,7 +24,7 @@ Why: every other skill works from the site record and the business profile. Gett
 3. `gravity_create_site` with `name` and `domain`. Preview, approval turn, then confirm. Keep the `site_id` it returns.
 4. `gravity_get_profile(site_id)`, then `gravity_set_profile(site_id, ...)` with business name, type, location, brand voice, target audience, selling points, services and hours. Ask the user for what you do not know. Preview, approval turn, then confirm.
 5. WordPress: the user creates an application password in WordPress (Users, Profile, Application Passwords) and stores it with the site address on the site record, either in the web app or with `gravity_update_site` (preview, approval turn, confirm). The first publish preview in **approve-and-measure-change** tests the connection.
-6. Google Search Console and Analytics: the user connects Google once at https://app.advisorseo.ai under their own Google account. AdvisorSEO reads those properties under that consent and the user can revoke it in their Google account at any time.
+6. Google Search Console, Analytics and Tag Manager: `gravity_google_connect_url(site_id)` gives a link that expires in 10 minutes. The site owner opens it, signs in with the Google account that can see the property, and allows the read-only permissions. Then `gravity_gsc_sites` and `gravity_google_set_properties` choose the property. See **search-console**, **analytics-ga4** and **tag-manager-tracking**.
 7. Optional: `gravity_crawl_site` to import the site's pages so audits and plans start from what exists. `gravity_crawl_pages` reads the imported pages.
 8. Finish with **ai-readiness-check** as the first useful result.
 

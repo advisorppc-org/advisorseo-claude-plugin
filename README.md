@@ -2,7 +2,7 @@
 
 Get found in Google and in AI assistants, with controls your security team can check. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, and changes nothing on your site until you approve a preview. Controls: sign-in is OAuth 2.1 (authorization code with PKCE S256 and dynamic client registration, so no key is ever pasted), tokens carry the scopes `mcp:tools` and `mcp:read`, every site write needs your approval in a separate turn, and the data-handling table below lists every place your data goes. Every result it reports comes with n and an interval, or the words "insufficient data".
 
-This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and seven skills that know how to use it well.
+This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and eleven skills that know how to use it well.
 
 Why: one install gives Claude both the connector and the know-how, so the first answer is a useful one and no change reaches a live site without your yes.
 
@@ -63,6 +63,10 @@ Why: each skill answers one question a site owner actually asks, and Claude pick
 | approve-and-measure-change | "Publish that post" | A preview, your explicit yes, the change, and the metric to check afterwards |
 | connect-and-import | "Add my site" | Platform detected, site record and business profile saved, WordPress and Google connection explained |
 | leads | "Any new leads?" | New leads, one lead's full history, and status moves with a note on each |
+| search-console | "Which queries bring clicks?" | Queries, pages, countries and devices from Search Console, URL inspection, sitemap status and submission |
+| analytics-ga4 | "Which landing pages convert?" | GA4 reports and realtime, a setup review, and key events or custom dimensions added on approval |
+| tag-manager-tracking | "Audit my GTM container" | Tags, triggers and consent checked, and draft changes made on approval |
+| core-web-vitals | "Is my site fast?" | Real-user field data, its history, and lab tests, each labelled by source |
 
 Every skill reports a rate with its sample size plus an interval, or says "insufficient data". No skill ever claims a rank position inside an AI assistant, and no skill queries or scrapes consumer AI apps.
 
@@ -90,6 +94,12 @@ The first call to a write tool changes nothing and returns a preview. The change
 | `gravity_update_lead` | A lead's status and notes |
 | `gravity_audit_domain`, `gravity_audit_watch` | Starts an audit run, or a recurring audit schedule |
 | `gravity_crawl_site` | Imports your site's public pages into your AdvisorSEO workspace |
+| `gravity_gsc_submit_sitemap`, `gsc_sitemaps_delete`, `gsc_sites_add`, `gsc_sites_delete` | Your Google Search Console account |
+| `ga4_*` tools that create, patch, update, archive or delete | Your Google Analytics 4 account and properties |
+| `gtm_*` tools that create, update, delete, revert, sync or combine | Draft workspaces and containers in your Google Tag Manager account |
+| `gtm_versions_publish`, `gtm_versions_set_latest` | The Tag Manager version live on your website, or the one marked latest |
+
+Google writes also need your Google consent. AdvisorSEO's first Google link asks for read-only access. The first time you confirm a change, you get a second link that adds only the write permission that change needs.
 
 Tool names keep the connector's fixed wire prefix; they are all AdvisorSEO tools.
 
@@ -102,7 +112,8 @@ Why: you should know every place your data goes before you install anything.
 | mcp.advisorseo.ai | Your tool calls and their arguments; results come back to Claude | Every AdvisorSEO tool call |
 | app.advisorseo.ai | Sign-in and the OAuth consent page; your account, plan and Google connection | At install, and when you manage your account |
 | Your website (public pages, robots.txt, llms.txt) | Fetched by the AdvisorSEO server, the way a crawler would | Audits, AI readiness checks, crawls |
-| Google APIs, under your own Google OAuth consent | Search Console and Analytics reads for the properties you connect | Only after you connect Google in app.advisorseo.ai |
+| Google APIs, under your own Google OAuth consent | Search Console, Analytics and Tag Manager reads, and the writes you approve | Only after you open the Google connect link and approve |
+| Google Chrome UX Report | The public URL or origin being checked | Core Web Vitals checks |
 | Google PageSpeed Insights | The public URL of the page being checked | Page speed checks |
 | Your WordPress site, with the application password you stored | The article you approved | Only on a confirmed publish |
 
