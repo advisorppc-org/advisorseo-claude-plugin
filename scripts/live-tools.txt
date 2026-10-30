@@ -21,14 +21,12 @@ advisorseo_topics
 crux_query_history
 ga4_account_access_report
 ga4_account_summaries_list
-ga4_accounts_account_ticket
 ga4_accounts_change_history
 ga4_accounts_delete
 ga4_accounts_get
 ga4_accounts_get_data_sharing
 ga4_accounts_list
 ga4_accounts_patch
-ga4_ack_data_collection
 ga4_ads_links_create
 ga4_ads_links_delete
 ga4_ads_links_list

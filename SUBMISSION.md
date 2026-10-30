@@ -12,7 +12,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 | Server URL | https://mcp.advisorseo.ai/mcp |
 | Transport | Streamable HTTP, https only |
 | Authentication | OAuth (sign-in and consent at app.advisorseo.ai) |
-| Tool count | 338 (read-only and write tools, annotated; each write previews first) |
+| Tool count | 336 (read-only and write tools, annotated; each write previews first) |
 
 ## 2. Plugin submission
 

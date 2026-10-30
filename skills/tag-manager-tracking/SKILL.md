@@ -21,7 +21,7 @@ Why: every marketing number depends on tags that fire once, at the right moment,
 ## Steps
 
 1. Get the site from **start-here**. `gravity_seo_tracking_check` shows what the live homepage carries (GA4 id, GTM container id, consent manager).
-2. Not connected, or `needs_reconsent`: hand the site owner the link. A first write asks for a second link that adds only the write permission it needs.
+2. Not connected, or `needs_reconsent`: hand the site owner the link. The first Tag Manager read, and the first write, each ask for a link that adds only the permission they need.
 3. Find the container: `gtm_accounts_list`, `gtm_containers_list`, or `gtm_containers_lookup` with the id found on the page. `gtm_workspaces_list` gives the draft workspace, and `gtm_workspaces_get_status` shows unpublished changes and conflicts.
 4. Audit: `gtm_tags_list`, `gtm_triggers_list`, `gtm_variables_list`, `gtm_builtins_list`, and `gtm_versions_live` for what visitors get today. Report paused tags, tags with no firing trigger, triggers no tag uses, a missing GA4 configuration, duplicate GA4 or conversion tags, and tags without consent settings where a consent manager is present.
 5. Change: `gtm_triggers_create` or `gtm_variables_create` first, then `gtm_tags_create` or `gtm_tags_update`, each preview first. `gtm_tags_revert` undoes a draft change.

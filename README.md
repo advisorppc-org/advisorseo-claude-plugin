@@ -99,7 +99,7 @@ The first call to a write tool changes nothing and returns a preview. The change
 | `gtm_*` tools that create, update, delete, revert, sync or combine | Draft workspaces and containers in your Google Tag Manager account |
 | `gtm_versions_publish`, `gtm_versions_set_latest` | The Tag Manager version live on your website, or the one marked latest |
 
-Google writes also need your Google consent. AdvisorSEO's first Google link asks for read-only access. The first time you confirm a change, you get a second link that adds only the write permission that change needs.
+Google writes also need your Google consent. AdvisorSEO's first Google link asks for read-only access to Search Console and Analytics. Tag Manager reads and each kind of change ask the first time you use them, with a link that adds only that permission.
 
 Tool names keep the connector's fixed wire prefix; they are all AdvisorSEO tools.
 
