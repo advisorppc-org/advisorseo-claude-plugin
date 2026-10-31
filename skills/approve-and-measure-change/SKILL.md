@@ -8,7 +8,7 @@ metadata:
 
 # Approve and measure a change
 
-Why: this is the only skill that changes what the public sees. A preview and an explicit yes stop a wrong change, and a named metric shows whether a right one worked.
+Why: this skill applies the preview and approval process to AdvisorSEO publishing operations. A preview and an explicit yes stop a wrong change, and a named metric shows whether a right one worked.
 
 ## Rules that come first
 
@@ -28,7 +28,7 @@ Why: this is the only skill that changes what the public sees. A preview and an 
 
 ## Steps
 
-1. Get the site from **start-here**.
+1. Get the site from **start-here** and use **connect-your-site** to verify its publishing route. For blog preparation and SEO/AEO/GEO use **publish-blog-seo-aeo-geo**. WordPress steps below apply only to WordPress. Coded websites route to Claude Code; Shopify, Wix, Framer, Webflow and other CMSs route to their official Claude connectors only when available and capable. If no route exists, deliver an export without claiming publishing.
 2. Find the content: `gravity_list_content(site_id=..., status="draft")` lists pages without bodies. `gravity_list_content(content_id=...)` returns one page in full.
 3. Write or edit: `gravity_save_content(site_id, title=..., content=..., meta_title=..., meta_description=..., target_keyword=..., content_type=..., strategy_id=..., status="draft")`. Preview, approval turn, then `confirm=true`.
 4. Review with the user: the title and meta read like the business, the target query is answered near the top, claims are real, nothing is a placeholder.
@@ -37,7 +37,7 @@ Why: this is the only skill that changes what the public sees. A preview and an 
    - Preview: `gravity_publish_wordpress(content_id, wp_status="publish")` with no `confirm`. This tests the WordPress connection and shows exactly what would be sent. If the test fails, stop and report it. The WordPress address and application password are set on the site record with `gravity_update_site`, and changing them is the user's call.
    - When the user is unsure, or it is the first article to this site, offer `wp_status="draft"` so a person presses publish inside WordPress.
    - Publish only after the approval turn: `gravity_publish_wordpress(content_id, wp_status="publish", confirm=true)`.
-7. Hosted site: `gravity_publish_site` or `gravity_unpublish_site`, with the same preview and approval turn.
+7. Hosted AdvisorSEO site only (not a custom-site or CMS adapter): `gravity_publish_site` or `gravity_unpublish_site`, with the same preview and approval turn.
 8. Verify: `gravity_list_content(site_id=..., status="published")` and report the live URL.
 9. Measure: name the metric the change should move (for example clicks or impressions for the target query, or leads from the page) and when to look again. For a page that targets AI answers, re-run **ai-readiness-check** on it with `gravity_geo_citability` and `gravity_geo_crawler_access`.
 

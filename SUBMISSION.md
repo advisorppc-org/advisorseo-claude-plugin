@@ -22,7 +22,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 | Slug | advisorseo |
 | Repository | https://github.com/advisorppc-org/advisorseo-claude-plugin (must be public before the listing goes live) |
 | Tracked branch | main |
-| Version | 0.3.0 |
+| Version | 0.4.0 |
 | License | MIT |
 | Icon | `icon.png`, 512 by 512 PNG, 4,790 bytes (the advisorseo.ai site icon) |
 | Homepage | https://advisorseo.ai |
@@ -48,7 +48,9 @@ Every result statement comes with n and an interval, or the words "insufficient 
 
 It reads and, on your approval, changes Google Search Console, Google Analytics 4 and Google Tag Manager under your own Google consent, and reads Core Web Vitals from the Chrome UX Report.
 
-The plugin bundles the AdvisorSEO connector and eleven skills: start-here, ai-readiness-check, site-audit, pages-to-win, approve-and-measure-change, connect-and-import, leads, search-console, analytics-ga4, tag-manager-tracking and core-web-vitals.
+The plugin bundles the AdvisorSEO connector and thirteen skills: start-here, ai-readiness-check, site-audit, pages-to-win, approve-and-measure-change, connect-and-import, leads, search-console, analytics-ga4, tag-manager-tracking core-web-vitals, connect-your-site and publish-blog-seo-aeo-geo.
+
+Publishing routes are checked per user: WordPress through secure application-password or working plugin setup, coded sites through Claude Code, and Shopify, Wix, Framer, Webflow or other CMSs through their available official Claude connectors when they support publishing. Otherwise the result is an export, not a live publish.
 
 ### Use cases
 
@@ -80,7 +82,7 @@ Why: ownership of the listing is the irreversible part, and the brand shown must
 
 | Field | Value |
 |---|---|
-| Publisher shown | AdvisorSEO |
+| Publisher shown | Advisor Media Group LLC |
 | Legal entity | Advisor Media Group LLC (also the LICENSE copyright holder) |
 | Submitting account | The same claude.ai organization that already holds the company's existing directory listing |
 | Support contact | support@advisorseo.ai |

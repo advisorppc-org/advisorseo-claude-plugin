@@ -2,7 +2,7 @@
 
 Get found in Google and in AI assistants, with controls your security team can check. AdvisorSEO checks whether AI crawlers can read your site, audits it, picks the pages most worth winning, and changes nothing on your site until you approve a preview. Controls: sign-in is OAuth 2.1 (authorization code with PKCE S256 and dynamic client registration, so no key is ever pasted), tokens carry the scopes `mcp:tools` and `mcp:read`, every site write needs your approval in a separate turn, and the data-handling table below lists every place your data goes. Every result it reports comes with n and an interval, or the words "insufficient data".
 
-This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and eleven skills that know how to use it well.
+This repository is the AdvisorSEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and thirteen skills that know how to use it well.
 
 Why: one install gives Claude both the connector and the know-how, so the first answer is a useful one and no change reaches a live site without your yes.
 
@@ -61,6 +61,8 @@ Why: each skill answers one question a site owner actually asks, and Claude pick
 | site-audit | "Audit my site" | Up to 10 findings with page and evidence, what changed since the last run, an optional recurring watch |
 | pages-to-win | "What pages should I create?" | Up to 10 pages, each with a gap type and the metric it should move, saved to your plan on approval |
 | approve-and-measure-change | "Publish that post" | A preview, your explicit yes, the change, and the metric to check afterwards |
+| connect-your-site | "Connect my Wix or Next.js site" | Honest platform routing: WordPress setup, Claude Code for coded sites, or your available official CMS connector |
+| publish-blog-seo-aeo-geo | "Write and publish an SEO blog" | Sourced, answer-first content, metadata, a destination preview, approval and verified publishing status |
 | connect-and-import | "Add my site" | Platform detected, site record and business profile saved, WordPress and Google connection explained |
 | leads | "Any new leads?" | New leads, one lead's full history, and status moves with a note on each |
 | search-console | "Which queries bring clicks?" | Queries, pages, countries and devices from Search Console, URL inspection, sitemap status and submission |
@@ -69,6 +71,12 @@ Why: each skill answers one question a site owner actually asks, and Claude pick
 | core-web-vitals | "Is my site fast?" | Real-user field data, its history, and lab tests, each labelled by source |
 
 Every skill reports a rate with its sample size plus an interval, or says "insufficient data". No skill ever claims a rank position inside an AI assistant, and no skill queries or scrapes consumer AI apps.
+
+## Publishing routes
+
+WordPress uses the AdvisorSEO plugin setup when already installed and working, or a WordPress REST application password entered through the secure connection page. A public WordPress plugin release is not promised. Coded sites, including Next.js, use Claude Code with your authorized repository and its existing build and deployment process. Shopify, Wix, Framer, Webflow and other CMSs use their own official Claude connectors when you have them connected and they expose the required publishing capability. These external routes are not adapters implemented by AdvisorSEO.
+
+Detection and adding a domain do not establish publishing access. No AdvisorSEO tool currently provisions a custom-site connection. If a suitable connector or source access is unavailable, Claude prepares an article and metadata for export and reports the missing setup. Hosted AdvisorSEO publishing is a separate destination. A draft or PR is never reported as a live page.
 
 ## How it works on its own
 
@@ -122,12 +130,14 @@ Why: you should know every place your data goes before you install anything.
 
 AdvisorSEO stores your encrypted Google connection and chosen properties, and any rank snapshot or PageSpeed measurement you run. Other Google reports are returned and not stored. Ask Claude to disconnect Google for a site to delete its connection; https://advisorseo.ai/privacy has the detail.
 
+For external CMS publishing, the article and metadata also go to the CMS through its own connector and permissions. For coded sites, Claude Code reads and writes the authorized local repository and uses its existing review/release workflow; that route is subject to the repository and hosting provider's data handling.
+
 The plugin itself runs no local code: it ships skills (text), an icon and one remote connector address. Nothing personal is stored in this repository. Your authorization is held in Claude's own credential store and can be revoked by removing the plugin or disconnecting Claude from your AdvisorSEO account.
 
 ## Requirements
 
 - An AdvisorSEO account: [advisorseo.ai](https://advisorseo.ai).
-- For publishing: a WordPress site with an application password stored on your AdvisorSEO site record. An application password is not your WordPress login password.
+- For publishing: a verified WordPress connection, an authorized source repository in Claude Code, or a capable official CMS connector connected in your Claude account. See Publishing routes above. Never paste an application password or other credential into chat.
 
 ## Privacy, terms and support
 

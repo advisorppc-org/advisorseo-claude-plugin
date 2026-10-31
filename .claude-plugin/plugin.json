@@ -1,10 +1,10 @@
 {
   "name": "advisorseo",
   "displayName": "AdvisorSEO",
-  "version": "0.3.0",
-  "description": "Get found in Google and in AI assistants. AdvisorSEO connects Claude to mcp.advisorseo.ai to check whether AI crawlers can read your site, audit it, pick the pages most worth winning, and read and change Search Console, Google Analytics 4 and Google Tag Manager, with every write previewed and approved first.",
+  "version": "0.4.0",
+  "description": "SEO, AEO and GEO in Claude: audit your site, plan and write sourced blogs, and publish through WordPress, Claude Code or your available official CMS connector. Every change is previewed and approved first.",
   "author": {
-    "name": "AdvisorSEO",
+    "name": "Advisor Media Group LLC",
     "email": "support@advisorseo.ai",
     "url": "https://advisorseo.ai"
   },
@@ -27,7 +27,10 @@
     "seo",
     "site-audit",
     "sitemaps",
-    "wordpress"
+    "wordpress",
+    "blog",
+    "publishing",
+    "cms"
   ],
   "icon": "./icon.png",
   "documentationUrl": "https://advisorseo.ai/docs",
