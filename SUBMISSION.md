@@ -24,7 +24,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 | Tracked branch | main |
 | Version | 0.3.0 |
 | License | MIT |
-| Icon | `icon.png`, 512 by 512 PNG, 4,790 bytes (the advisorseo.ai site icon) |
+| Icon | `icon.png`, 512 by 512 PNG, 33,109 bytes (the advisorseo.ai site icon) |
 | Homepage | https://advisorseo.ai |
 | Documentation | https://advisorseo.ai/docs |
 | Support | https://advisorseo.ai/support |
