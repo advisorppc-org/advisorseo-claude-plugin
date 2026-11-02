@@ -25,7 +25,7 @@ Why: a lead status is a record of what happened. Keeping it true is what lets th
 2. `gravity_list_leads(site_id=..., status="new")`: newest first, with pipeline totals. Spam is left out unless `include_spam=true`.
 3. `gravity_list_leads(lead_id=...)`: one lead with its full activity trail. Read the trail before acting; it often shows the lead was already chased.
 4. `gravity_update_lead(lead_id, status=..., note="...")`: preview, approval turn, then `confirm=true`. The note is appended; it never overwrites an earlier one.
-5. Report the pipeline shape, then finish with the one next action you would take, naming the lead and the reason. One action, with no others listed after it. For a rate such as "converted out of new this month", give n and an interval, or "insufficient data" when n is small.
+5. Report the pipeline shape and the one next action you would take. For a rate such as "converted out of new this month", give n and an interval, or "insufficient data" when n is small.
 
 ## Check
 
