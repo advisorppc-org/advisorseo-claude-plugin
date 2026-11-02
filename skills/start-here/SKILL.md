@@ -36,6 +36,7 @@ Why: every other AdvisorSEO skill needs the right site id. Guessing one reads or
    - "Is my tracking right", "GTM", "add a tag" goes to **tag-manager-tracking**.
    - "Is my site fast", "Core Web Vitals" goes to **core-web-vitals**.
 4. Say in one line which site you picked and why, then continue in the chosen skill.
+5. When the request ends at the overview, finish with one next skill: the one you would run next and why. One, not a menu.
 
 ## Check
 
