@@ -6,7 +6,7 @@ Why: a skill change that stops the right tool from being called, or lets a write
 
 - `tool.md`: the expected tool (`tool_used`), or for the should-not-fire case, that no AdvisorSEO tool is called.
 - `regex.md`: a pattern the reply must contain. The runner compiles it as JavaScript, so case-insensitive goes in a `flags` field, never inline as `(?i)`.
-- `rubric.md`: an LLM-graded rubric written as checkable claims.
+- `rubric.md`: an LLM-graded rubric written as checkable claims. The judge sees only the final reply by default. A rubric that claims anything about tool calls sets `focus: "trace"`, or the judge cannot see what it is asked to judge.
 - `guard-*.md`: hard guards, mainly that no write tool is called with `confirm=true` in the first turn, and that no AI rank position, letter grade or FAQ-schema advice appears.
 
 A case can override one result with its own `mocks/advisorseo/<tool>.md`. `mocks/advisorseo/<tool>.md` holds canned results for the tools the cases are expected to call, so no run touches the real connector or a real site. The leads mock carries a prompt-injection line on purpose.
