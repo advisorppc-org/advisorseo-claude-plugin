@@ -1,9 +1,0 @@
-{
-  "data": {
-    "keyEvents": [
-      {
-        "eventName": "purchase"
-      }
-    ]
-  }
-}

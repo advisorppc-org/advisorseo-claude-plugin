@@ -1,8 +1,0 @@
-{
-  "mcpServers": {
-    "advisorseo": {
-      "type": "http",
-      "url": "https://mcp.advisorseo.ai/mcp"
-    }
-  }
-}
