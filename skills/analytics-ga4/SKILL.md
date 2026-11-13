@@ -3,7 +3,7 @@ name: analytics-ga4
 description: Use for Google Analytics 4 work on a connected site, for example "how many sessions from organic search", "which landing pages convert", "what is happening on my site right now", "mark this event as a key event", "add a custom dimension", "check my GA4 setup", "what is my data retention". Reads reports, realtime and property settings, and changes GA4 configuration after approval. Not for Search Console queries (use search-console).
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # GA4 analytics

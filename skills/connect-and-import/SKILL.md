@@ -3,7 +3,7 @@ name: connect-and-import
 description: Use for setting up a website in AdvisorSEO, for example "add my site", "connect my website", "set up AdvisorSEO", "import my site", "connect WordPress", "connect Google Search Console", "what platform is my site on", or "fill in my business profile". Detects the site's platform, creates the site record, saves the business profile, and explains where WordPress and Google connections are made.
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # Connect and import a site

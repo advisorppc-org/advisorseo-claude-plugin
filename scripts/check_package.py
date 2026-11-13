@@ -11,15 +11,25 @@ import subprocess
 import sys
 from pathlib import Path
 
-ROOT = Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
+ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+# Why: a release must not ship a skill whose tool is still in an open connector pull request.
+RELEASE = "--release" in sys.argv
+ROOT = Path(ARGS[0] if ARGS else ".").resolve()
 errors: list[str] = []
 LIVE = set((ROOT / "scripts/live-tools.txt").read_text().split())
+# Tools in open connector pull requests: name, then the pull request number.
+PENDING = {
+    line.split()[0]: line.split()[1]
+    for line in (ROOT / "scripts/pending-tools.txt").read_text().splitlines()
+    if line.strip() and not line.startswith("#")
+}
+DISPLAY_NAME = "Advisor SEO, AEO, GEO"
 ALLOWED_FM = {"name", "description", "license", "metadata"}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
 BANNED_EXT = {".zip", ".pdf", ".ico", ".tar", ".gz", ".tgz", ".exe", ".bin", ".dll", ".so", ".dylib", ".jar", ".whl"}
 REPO_SLUG = "advisorppc-org/advisorseo-claude-plugin"
 # Every wire prefix a skill may name. Hyphenated words such as gtm-container never match.
-TOOL_NAME = r"\b(?:gravity|gtm|ga4|gsc|crux)_[a-z0-9_]+"
+TOOL_NAME = r"\b(?:gravity|gtm|ga4|gsc|crux|advisorseo)_[a-z0-9_]+"
 
 
 def fail(msg: str) -> None:
@@ -64,9 +74,17 @@ if "icon" in plugin:
     icon = ROOT / plugin["icon"]
     if not icon.exists() or icon.stat().st_size > 256 * 1024:
         fail("icon missing or over 256 KiB")
+if plugin.get("displayName") != DISPLAY_NAME:
+    fail(f"plugin.json: displayName is not {DISPLAY_NAME!r}")
 market = json.loads((ROOT / ".claude-plugin/marketplace.json").read_text())
 if market.get("name") != "advisorseo" or not any(p.get("name") == plugin["name"] for p in market.get("plugins", [])):
     fail("marketplace.json: name or plugin entry wrong")
+for entry in market.get("plugins", []):
+    if entry.get("name") == plugin["name"] and entry.get("displayName", DISPLAY_NAME) != DISPLAY_NAME:
+        fail("marketplace.json: displayName differs from plugin.json")
+if PENDING.keys() & LIVE:
+    fail(f"pending-tools.txt: already live, move out: {sorted(PENDING.keys() & LIVE)}")
+readme_text = (ROOT / "README.md").read_text()
 
 # 2. .mcp.json
 mcp = json.loads((ROOT / ".mcp.json").read_text())
@@ -110,9 +128,27 @@ for s in skills:
         fail(f"{s.relative_to(ROOT)}: no Check section")
     if "insufficient data" not in body:
         fail(f"{s.relative_to(ROOT)}: no 'insufficient data' rule")
+    waiting = set()
     for tool in set(re.findall(TOOL_NAME, text)):
-        if tool not in LIVE:
-            fail(f"{s.relative_to(ROOT)}: names {tool}, which is not a deployed tool")
+        if tool in PENDING:
+            waiting.add(tool)
+        elif tool not in LIVE:
+            fail(f"{s.relative_to(ROOT)}: names {tool}, which is not a connector tool")
+    # Why: a skill written ahead of its tool must say so to the maintainer (needs), to the user
+    # (a fallback line) and in the README, so nobody is told a tool exists when it does not.
+    rel = s.relative_to(ROOT)
+    needs = re.search(r"^  needs: (.+)$", m.group(1), re.M)
+    if waiting and RELEASE:
+        fail(f"{rel}: names {sorted(waiting)}, still in open connector pull requests")
+    for tool in sorted(waiting):
+        if not needs or tool not in needs.group(1):
+            fail(f"{rel}: names pending tool {tool} without listing it in metadata needs")
+        if "not available yet" not in body:
+            fail(f"{rel}: names pending tool {tool} without a 'not available yet' fallback")
+        if f"`{tool}`" not in readme_text.split("## Waiting on the connector")[-1].split("\n## ")[0]:
+            fail(f"{rel}: pending tool {tool} is not listed under 'Waiting on the connector' in README.md")
+    if needs and not waiting:
+        fail(f"{rel}: metadata needs is set but no pending tool is named; remove it")
     listing_words(s, text)
 
 # 5. Listing copy
@@ -139,8 +175,8 @@ for f in ("README.md", "SUBMISSION.md", ".claude-plugin/plugin.json", ".claude-p
 for s in skills:
     banned_words(s, s.read_text(), allow_ai_rank=True)
 for tool in set(re.findall(TOOL_NAME, (ROOT / "README.md").read_text())):
-    if tool not in LIVE:
-        fail(f"README.md: names {tool}, which is not a deployed tool")
+    if tool not in LIVE and tool not in PENDING:
+        fail(f"README.md: names {tool}, which is not a connector tool")
 words = len(re.findall(r"[A-Za-z][A-Za-z'-]*", strip_code((ROOT / "README.md").read_text())))
 if words < 40:
     fail(f"README.md: {words} words outside code blocks (needs 40 or more)")

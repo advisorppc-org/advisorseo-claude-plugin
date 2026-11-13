@@ -1,9 +1,9 @@
 ---
 name: start-here
-description: Use first in any AdvisorSEO conversation, for example "what can AdvisorSEO do", "how is my site doing", "where do I start", "show my SEO workspace", "which sites do I have", or any SEO, AI search, AI visibility, site audit, keyword, content or lead request where no site has been picked yet. Reads the workspace overview, picks the right site, and routes to the skill that fits the request.
+description: Use first in any AdvisorSEO (Advisor SEO, AEO, GEO) conversation, for example "what can AdvisorSEO do", "how is my site doing", "where do I start", "show my SEO workspace", "which sites do I have", or any SEO, AEO, GEO, AI search, AI visibility, site audit, keyword, content or lead request where no site has been picked yet. Reads the workspace overview, picks the right site, and routes to the skill that fits the request.
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # Start here: the first-call recipe
@@ -35,6 +35,13 @@ Why: every other AdvisorSEO skill needs the right site id. Guessing one reads or
    - "How is my traffic", "GA4", "key events" goes to **analytics-ga4**.
    - "Is my tracking right", "GTM", "add a tag" goes to **tag-manager-tracking**.
    - "Is my site fast", "Core Web Vitals" goes to **core-web-vitals**.
+   - "Keyword research", "search volume", "who ranks for this", "topic cluster" goes to **keyword-research**.
+   - "Track my rankings", "what moved", "why did clicks drop" goes to **rank-tracking**.
+   - "Is this page answer ready", "make this page citable", "schema for this page" goes to **answer-ready-pages**.
+   - "Are AI assistants citing us", "visits from ChatGPT", "track AI visibility" goes to **ai-visibility**.
+   - "Where does my brand appear", "unlinked mentions", "backlinks", "can an agent book from my site" goes to **brand-and-mentions**.
+   - "Bing", "IndexNow", "Copilot's index" goes to **bing-webmaster**.
+   - "Monthly report", "client report", "keep or kill this post" goes to **monthly-report**.
 4. Say in one line which site you picked and why, then continue in the chosen skill.
 
 ## Check
