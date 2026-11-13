@@ -1,6 +1,6 @@
 {
   "name": "advisorseo",
-  "displayName": "AdvisorSEO",
+  "displayName": "Advisor SEO, AEO, GEO",
   "version": "0.3.0",
   "description": "Get found in Google and in AI assistants. AdvisorSEO connects Claude to mcp.advisorseo.ai to check whether AI crawlers can read your site, audit it, pick the pages most worth winning, and read and change Search Console, Google Analytics 4 and Google Tag Manager, with every write previewed and approved first.",
   "author": {
