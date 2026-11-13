@@ -1,7 +1,8 @@
 {
   "status": "unconfigured",
+  "site_id": "site_7f3a",
   "missing": [
-    "Google Ads access is not set up on this deployment"
+    "GOOGLE_ADS_VARIABLE_NAME"
   ],
-  "note": "nothing was sent to Google"
+  "error": "Keyword Planner is not set up on this deployment. Nothing was sent to Google."
 }

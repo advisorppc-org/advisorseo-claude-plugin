@@ -24,8 +24,8 @@ Why: a position is useful only next to its history and its clicks. This skill ke
 
 1. Get the site from **start-here**. Google must be connected: if not, hand off to **connect-and-import**.
 2. Store positions: `advisorseo_rank_snapshot(site_id, days)` without `confirm` returns the plan. After approval, `confirm=true` stores position, clicks, impressions and best page per keyword per day. The first run can backfill up to 90 days.
-3. Read the table: `advisorseo_rank_table(site_id, sort="change_7d")`. Useful filters: `movers="down"`, `min_position=10.01` with `max_position=20` for page two, `min_impressions` to drop noise.
-4. What changed between two periods: `advisorseo_search_trend(site_id, days)` gives each query and page a trend (`rising`, `falling`, `new`, `lost` or `impressions_up_clicks_flat`) and puts AI assistant sessions beside Organic Search sessions.
+3. Read the table: `advisorseo_rank_table(site_id, sort="change_7d")`. A `no_snapshot` status means nothing is stored yet: go back to step 2. Useful filters: `movers="down"`, `min_position=10.01` with `max_position=20` for page two, `min_impressions` to drop noise.
+4. What changed between two periods: `advisorseo_search_trend(site_id, days)` gives each query and page a trend (`rising`, `falling`, `steady`, `new`, `lost` or `impressions_up_clicks_flat`) and puts AI assistant sessions beside Organic Search sessions.
 5. Why one page does or does not rank: `advisorseo_onpage_check(site_id, keyword, url)` checks title, meta, h1, internal links, structured data, canonical, noindex and field Core Web Vitals, and lists the next three fixes.
 6. Report: the biggest movers with dates, clicks and impressions, the page two keywords closest to page one, and one next step. A fix goes through **approve-and-measure-change**. A page that loses clicks to an answer feature goes to **answer-ready-pages**.
 

@@ -13,8 +13,8 @@ Why: Bing's index feeds Copilot and several other assistants and search engines,
 ## Rules that come first
 
 1. The Bing key is the site owner's own, from Bing Webmaster Tools, Settings, API Access. Ask the user to paste it only for the connect call. Never repeat it back, never put it in a summary, and never store it anywhere but the connect tool.
-2. Connecting, disconnecting, storing an IndexNow key and submitting URLs are writes. Show the preview, wait for the user's yes in a new turn, then call again with `confirm=true`.
-3. These are Bing's numbers, not Google's. Say so beside every figure. A state of `empty`, `partial`, `not_connected` or `not_verified` is not zero: report the state and the `next_action` the tool returned.
+2. Connecting, disconnecting, storing or removing an IndexNow key and submitting URLs are writes. Show the preview, wait for the user's yes in a new turn, then call again with `confirm=true`.
+3. These are Bing's numbers, not Google's. Say so beside every figure. A state of `empty`, `partial`, `not_connected`, `not_verified`, `not_found`, `token_expired` or `rate_limited` is not zero: report the state and the `next_action` the tool returned.
 4. IndexNow `accepted` means the list was received, not that a page was crawled or indexed. Google does not use IndexNow.
 5. Being in Bing's index does not mean an assistant will cite the page. Never state a rank or position inside an AI assistant. Any rate comes with its n plus an interval, or the words "insufficient data".
 
@@ -28,7 +28,7 @@ Why: Bing's index feeds Copilot and several other assistants and search engines,
    - `advisorseo_bing_queries(site_id)`: Bing searches with impressions, clicks and average position.
    - `advisorseo_bing_backlinks(site_id)`: pages with inbound links, or the links to one `url`.
    - `advisorseo_bing_keywords(site_id, keyword)`: Bing volume and related keywords.
-4. IndexNow, for a WordPress site running the AdvisorSEO Connect plugin: `advisorseo_indexnow_connect(site_id, key)` with the key the plugin's settings show (preview, then confirm; the key file is fetched and must match). `advisorseo_indexnow_remove(site_id)` forgets it.
+4. IndexNow, for a WordPress site running the AdvisorSEO Connect plugin: `advisorseo_indexnow_connect(site_id, key)` with the key the plugin's settings show (preview, then confirm; the key file is fetched and must match). `advisorseo_indexnow_remove(site_id)` forgets it (preview, then confirm). Once a key is connected, an approved publish also announces its page to IndexNow on its own.
 5. Announce changed pages: `gravity_indexnow_submit(site_id, urls=[...])`, at most 100 pages on the connected host (preview, then confirm).
 6. Report the state, the two or three issues that block the most pages, and one next step. A page fix goes through **approve-and-measure-change**.
 

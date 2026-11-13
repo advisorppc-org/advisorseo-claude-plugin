@@ -28,7 +28,7 @@ Why: assistants build answers from sources they trust, and most of those are not
 2. Footprint: `gravity_geo_brand_footprint(brand_name, domain)`. Report each verified platform as present or absent, the rest as not checked.
 3. Can assistants find, trust and act on the business: `gravity_agent_surface_check(site_id)` returns findings with evidence across crawl access, entity facts against the business profile, offers in structured data, answer-ready content, citations, whether an agent can act, and measured AI outcomes.
 4. Backlinks: `advisorseo_bing_backlinks(site_id)` lists the site's pages with inbound links, and with `url` the links to one page with their anchor text. This needs a Bing connection (see **bing-webmaster**).
-5. Unlinked mentions: gather up to 10 page URLs that may mention the brand (the user's list, sources cited in collected AI answers from **ai-visibility**, review or forum threads), then `advisorseo_unlinked_mentions(site_id, urls=[...])`. Each page comes back as `unlinked_mention`, `linked`, `linked_no_mention`, `no_mention` or `unreadable`.
+5. Unlinked mentions: gather up to 10 page URLs that may mention the brand (the user's list, sources cited in collected AI answers from **ai-visibility**, review or forum threads), then `advisorseo_unlinked_mentions(site_id, urls=[...])`. Each page comes back as `unlinked_mention`, `linked`, `linked_no_mention`, `no_mention`, `unreadable` or `skipped`.
 6. For each `unlinked_mention`, draft a short, honest outreach note the user can send: what the page says, the exact page on the user's site that fits, and no pressure.
 7. End on one next step. A fact that differs between the site and its profile is fixed first, through **connect-and-import** or **approve-and-measure-change**.
 

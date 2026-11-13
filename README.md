@@ -1,6 +1,6 @@
 # Advisor SEO, AEO, GEO for Claude
 
-Get found in Google, Bing and AI assistants, with controls your security team can check. Advisor SEO, AEO, GEO is the AdvisorSEO connector and its skills for Claude. It covers search engine optimization (SEO), answer engine optimization (AEO) and generative engine optimization (GEO): it researches keywords, tracks positions, audits the site, checks whether AI crawlers can read it and whether a page answers early enough to be quoted, measures AI visibility with sample sizes, and changes nothing on your site until you approve a preview. Controls: sign-in is OAuth 2.1 (authorization code with PKCE S256 and dynamic client registration, so no key is ever pasted), tokens carry the scopes `mcp:tools` and `mcp:read`, every site write needs your approval in a separate turn, and the data-handling table below lists every place your data goes. Every result it reports comes with n and an interval, or the words "insufficient data".
+Get found in Google, Bing and AI assistants, with controls your security team can check. Advisor SEO, AEO, GEO is the AdvisorSEO connector and its skills for Claude. It covers search engine optimization (SEO), answer engine optimization (AEO) and generative engine optimization (GEO): it researches keywords, tracks positions, audits the site, checks whether AI crawlers can read it and whether a page answers early enough to be quoted, measures AI visibility with sample sizes, and changes nothing on your site until you approve a preview. Controls: sign-in is OAuth 2.1 (authorization code with PKCE S256 and dynamic client registration, so no AdvisorSEO password or token is ever pasted), tokens carry the scopes `mcp:tools` and `mcp:read`, every site write needs your approval in a separate turn, and the data-handling table below lists every place your data goes. Every result it reports comes with n and an interval, or the words "insufficient data".
 
 This repository is the Advisor SEO, AEO, GEO plugin for Claude Code, claude.ai and Claude Desktop. It bundles the AdvisorSEO connector (`https://mcp.advisorseo.ai/mcp`) and eighteen skills that know how to use it well. The plugin's install name stays `advisorseo`.
 
@@ -48,7 +48,7 @@ For a team, add this to the repository's `.claude/settings.json`:
 }
 ```
 
-The first AdvisorSEO call opens a browser window where you sign in to your AdvisorSEO account and approve access. No key, password or header is ever pasted into the chat.
+The first AdvisorSEO call opens a browser window where you sign in to your AdvisorSEO account and approve access. No AdvisorSEO key, password or header is ever pasted into the chat. Two optional connections use a key of your own that you give once: Bing Webmaster Tools and IndexNow. Each is stored encrypted and never shown again.
 
 ## What it does
 
@@ -150,13 +150,14 @@ Why: you should know every place your data goes before you install anything.
 | Google Chrome UX Report | The public URL or origin being checked, under AdvisorSEO's own API key | Core Web Vitals checks |
 | Google PageSpeed Insights | The public URL of the page being checked | Page speed checks |
 | Bing Webmaster Tools, under your own API key | Reads of your site's Bing queries, index status, crawl issues, backlinks and keyword volume | Only after you connect your Bing key |
-| IndexNow | The URLs of your changed pages | Only on a confirmed submit |
+| IndexNow | The URLs of your changed pages and your IndexNow key | On a confirmed submit, and after each approved publish once you have connected an IndexNow key |
 | Google Ads Keyword Planner, under AdvisorSEO's own access | The keywords being sized, with country and language | Keyword volume checks, once that tool is live |
 | Serper (a Google results API), under AdvisorSEO's own key | One keyword, with country and language | Live results page checks, once that tool is live |
 | Public pages of other sites (a competitor, Wikipedia and Wikidata, pages you name) | Fetched by the AdvisorSEO server, the way a crawler would | Competitor phrase, brand footprint and mention checks |
 | Your WordPress site, with the application password you stored | The article you approved | Only on a confirmed publish |
+| Your WordPress site, through the AdvisorSEO Connect plugin | A read of the plugin's AI crawler counts | Each AI crawler log check |
 
-AdvisorSEO stores your encrypted Google connection and chosen properties, your encrypted Bing and IndexNow keys if you connect them, the AI answers and runs you record, and any rank snapshot or PageSpeed measurement you run. Other Google reports are returned and not stored. Ask Claude to disconnect Google for a site to delete its connection; https://advisorseo.ai/privacy has the detail.
+AdvisorSEO stores your encrypted Google connection and chosen properties, your encrypted Bing and IndexNow keys if you connect them, the AI prompts, answers, runs and exports you save, your topic clusters, findability checks you confirm, and any rank snapshot or PageSpeed measurement you run. Other Google reports are returned and not stored. Ask Claude to disconnect Google for a site to delete its connection; https://advisorseo.ai/privacy has the detail.
 
 The plugin itself runs no local code: it ships skills (text), an icon and one remote connector address. Nothing personal is stored in this repository. Your authorization is held in Claude's own credential store and can be revoked by removing the plugin or disconnecting Claude from your AdvisorSEO account.
 

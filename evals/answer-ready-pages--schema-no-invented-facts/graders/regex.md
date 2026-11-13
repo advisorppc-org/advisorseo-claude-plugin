@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "(rating|review)"
+pattern: "(not (include|add|included|added)|left out|leave out|omit|without (a|the) rating|can't add|cannot add|won't add)"
 flags: "i"
 weight: 1
 ---

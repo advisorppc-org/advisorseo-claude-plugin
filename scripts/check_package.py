@@ -12,17 +12,25 @@ import sys
 from pathlib import Path
 
 ARGS = [a for a in sys.argv[1:] if not a.startswith("--")]
+UNKNOWN = [a for a in sys.argv[1:] if a.startswith("--") and a != "--release"]
+if UNKNOWN:
+    sys.exit(f"unknown option {UNKNOWN[0]}; the only option is --release")
 # Why: a release must not ship a skill whose tool is still in an open connector pull request.
 RELEASE = "--release" in sys.argv
 ROOT = Path(ARGS[0] if ARGS else ".").resolve()
 errors: list[str] = []
 LIVE = set((ROOT / "scripts/live-tools.txt").read_text().split())
 # Tools in open connector pull requests: name, then the pull request number.
-PENDING = {
-    line.split()[0]: line.split()[1]
-    for line in (ROOT / "scripts/pending-tools.txt").read_text().splitlines()
-    if line.strip() and not line.startswith("#")
-}
+PENDING: dict[str, str] = {}
+for line in (ROOT / "scripts/pending-tools.txt").read_text().splitlines():
+    parts = line.split()
+    if not parts or parts[0].startswith("#"):
+        continue
+    if len(parts) != 2 or not parts[1].isdigit():
+        errors.append(f"pending-tools.txt: '{line.strip()}' is not 'tool pull-request-number'")
+        continue
+    PENDING[parts[0]] = parts[1]
+WAITING_HEADING = "## Waiting on the connector"
 DISPLAY_NAME = "Advisor SEO, AEO, GEO"
 ALLOWED_FM = {"name", "description", "license", "metadata"}
 IMAGE_EXT = {".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg"}
@@ -85,6 +93,12 @@ for entry in market.get("plugins", []):
 if PENDING.keys() & LIVE:
     fail(f"pending-tools.txt: already live, move out: {sorted(PENDING.keys() & LIVE)}")
 readme_text = (ROOT / "README.md").read_text()
+# The README section that lists pending tools; empty when the heading is missing, so the check fails closed.
+waiting_section = ""
+if WAITING_HEADING in readme_text:
+    waiting_section = readme_text.split(WAITING_HEADING, 1)[1].split("\n## ", 1)[0]
+elif PENDING:
+    fail(f"README.md: no '{WAITING_HEADING}' section while pending-tools.txt has entries")
 
 # 2. .mcp.json
 mcp = json.loads((ROOT / ".mcp.json").read_text())
@@ -145,7 +159,7 @@ for s in skills:
             fail(f"{rel}: names pending tool {tool} without listing it in metadata needs")
         if "not available yet" not in body:
             fail(f"{rel}: names pending tool {tool} without a 'not available yet' fallback")
-        if f"`{tool}`" not in readme_text.split("## Waiting on the connector")[-1].split("\n## ")[0]:
+        if f"`{tool}`" not in waiting_section:
             fail(f"{rel}: pending tool {tool} is not listed under 'Waiting on the connector' in README.md")
     if needs and not waiting:
         fail(f"{rel}: metadata needs is set but no pending tool is named; remove it")
@@ -177,6 +191,9 @@ for s in skills:
 for tool in set(re.findall(TOOL_NAME, (ROOT / "README.md").read_text())):
     if tool not in LIVE and tool not in PENDING:
         fail(f"README.md: names {tool}, which is not a connector tool")
+# Why: a pending tool named outside the waiting section reads as available today.
+for tool in set(re.findall(TOOL_NAME, readme_text.replace(waiting_section, ""))) & PENDING.keys():
+    fail(f"README.md: names pending tool {tool} outside '{WAITING_HEADING}'")
 words = len(re.findall(r"[A-Za-z][A-Za-z'-]*", strip_code((ROOT / "README.md").read_text())))
 if words < 40:
     fail(f"README.md: {words} words outside code blocks (needs 40 or more)")

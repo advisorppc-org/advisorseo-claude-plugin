@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "citynews"
+pattern: "(outreach|reach out|draft|note you can send)"
 flags: "i"
 weight: 1
 ---

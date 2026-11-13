@@ -1,6 +1,6 @@
 ---
 type: "regex"
-pattern: "bing"
+pattern: "148"
 flags: "i"
 weight: 1
 ---

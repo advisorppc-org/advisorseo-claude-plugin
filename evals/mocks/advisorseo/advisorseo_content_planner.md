@@ -2,18 +2,30 @@
   "site_id": "site_7f3a",
   "posts": [
     {
-      "content_id": "c_11",
+      "id": "c_11",
       "title": "Emergency plumber guide",
+      "type": "blog_post",
       "status": "published",
-      "read": "keep",
-      "clicks_28d": 64
+      "keep_kill": {
+        "verdict": "keep",
+        "reason": "64 clicks in 28 days",
+        "window": {
+          "start_date": "2026-10-13",
+          "end_date": "2026-11-09"
+        }
+      }
     },
     {
-      "content_id": "c_22",
+      "id": "c_22",
       "title": "Burst pipe repair cost",
+      "type": "blog_post",
       "status": "published",
-      "read": "Not read",
-      "reason": "too young"
+      "keep_kill": {
+        "verdict": "too-young",
+        "reason": "published 9 days ago; needs 28 days of data",
+        "window": null
+      }
     }
-  ]
+  ],
+  "truncated": false
 }
