@@ -8,7 +8,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 | Field | Value |
 |---|---|
-| Name | AdvisorSEO |
+| Name | Advisor SEO, AEO, GEO |
 | Server URL | https://mcp.advisorseo.ai/mcp |
 | Transport | Streamable HTTP, https only |
 | Authentication | OAuth (sign-in and consent at app.advisorseo.ai) |
@@ -18,7 +18,7 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 | Field | Value |
 |---|---|
-| Name | AdvisorSEO |
+| Name | Advisor SEO, AEO, GEO |
 | Slug | advisorseo |
 | Repository | https://github.com/advisorppc-org/advisorseo-claude-plugin (must be public before the listing goes live) |
 | Tracked branch | main |
