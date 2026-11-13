@@ -9,7 +9,8 @@ Why: these are the rules the directory review and the strict validator apply.
 - Plugin files: `.claude-plugin/plugin.json`, `.claude-plugin/marketplace.json`, `.mcp.json`, `skills/<name>/SKILL.md`, `icon.png`, `README.md`, `LICENSE`. No `commands/`, `agents/`, `hooks/` or top-level `bin/` (chat and Cowork refuse a plugin with `bin/`; agents and hooks are ignored in claude.ai chat).
 - No tracked `.zip`, `.pdf`, `.ico` or other non-image binary, and no file over 256 KiB. `dist/` is ignored.
 - Listing copy, skills, README and manifests never say the codename or the parent company name; tool names such as `gravity_overview` may appear in tool-call examples only. `scripts/validate.sh` enforces this.
-- Skills name only tools deployed on mcp.advisorseo.ai today. Skills that need undeployed tools wait in `docs/ROADMAP.md`.
+- The display name is "Advisor SEO, AEO, GEO" (`displayName` in both manifests). The install name `advisorseo`, the repository name, the connector address and every tool name stay as they are.
+- Skills name only tools in `scripts/live-tools.txt` (the connector's main branch; regenerate it from the connector's tool list at each release and confirm against the deployed connector) or in `scripts/pending-tools.txt` (open connector pull requests). A skill that names a pending tool lists it in `metadata.needs`, tells the user what to do when the tool is "not available yet", and is listed in the README under "Waiting on the connector". `python3 scripts/check_package.py . --release` fails while any pending tool is named: run it before tagging or submitting.
 - Gate: `scripts/validate.sh` (runs `claude plugin validate --strict .` when the CLI is present, plus the repo checks). CI runs it on every push and pull request.
 - Evals: `evals/`, run by the lead on a seat before each release, never in CI.
 

@@ -1,0 +1,9 @@
+# Tools a skill may name before they are on the connector's main branch.
+# One per line: tool name, then the connector pull request that adds it.
+# Move a line to live-tools.txt when its pull request merges and deploys.
+advisorseo_competitor_terms 95
+advisorseo_unlinked_mentions 95
+advisorseo_keyword_ideas 96
+advisorseo_page_read 96
+advisorseo_search_trend 96
+advisorseo_serp 96

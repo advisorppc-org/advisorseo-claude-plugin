@@ -8,21 +8,21 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 | Field | Value |
 |---|---|
-| Name | AdvisorSEO |
+| Name | Advisor SEO, AEO, GEO |
 | Server URL | https://mcp.advisorseo.ai/mcp |
 | Transport | Streamable HTTP, https only |
 | Authentication | OAuth (sign-in and consent at app.advisorseo.ai) |
-| Tool count | 336 (read-only and write tools, annotated; writes to a site, a record or a Google account preview first) |
+| Tool count | 358 on the connector's main branch on 2026-11-13 (read-only and write tools, annotated; writes to a site, a record or a Google account preview first). Confirm the count on the deployed connector on the day of submission |
 
 ## 2. Plugin submission
 
 | Field | Value |
 |---|---|
-| Name | AdvisorSEO |
-| Slug | advisorseo |
+| Name | Advisor SEO, AEO, GEO |
+| Slug | advisorseo (unchanged) |
 | Repository | https://github.com/advisorppc-org/advisorseo-claude-plugin (must be public before the listing goes live) |
 | Tracked branch | main |
-| Version | 0.3.0 |
+| Version | 0.4.0 |
 | License | MIT |
 | Icon | `icon.png`, 512 by 512 PNG, 4,790 bytes (the advisorseo.ai site icon) |
 | Homepage | https://advisorseo.ai |
@@ -34,21 +34,25 @@ Order: submit the MCP connector first, then the plugin paired with it. Updates s
 
 ### One-liner (200 characters or fewer)
 
-Get found in Google and in AI assistants: AI-crawler readiness, site audits, Search Console, GA4 and Tag Manager, with changes to your site and Google previewed and approved first.
+SEO, AEO and GEO in Claude: keyword research, rank tracking, site audits, answer-ready pages, AI visibility with sample sizes, and Google and Bing data. Every change is previewed and approved first.
 
 ### Description (2,000 characters or fewer)
 
-AdvisorSEO helps a business get found in Google and in the answers AI assistants give. Install it and Claude can check whether AI search and user-fetch crawlers are allowed to read your site, audit the live site and explain each finding with its evidence, choose the ten pages most worth winning with the gap each one fills and the metric it should move, and track the leads your site brings in.
+Advisor SEO, AEO, GEO helps a business get found in Google, in Bing and in the answers AI assistants give.
 
-It works on its own: it watches the site, proposes each change with its reason, asks for one approval, applies it, then measures and reports the result with n and an interval, or insufficient data (site-audit and ai-readiness-check watch, site-audit and pages-to-win propose, approve-and-measure-change applies and measures, leads reports pipeline results).
+SEO: research keywords from the queries you already earn and from Google and Bing volume, track daily positions from your own Search Console, audit the live site with evidence for each finding, and read Search Console, Google Analytics 4, Tag Manager, Bing Webmaster Tools and Core Web Vitals.
 
-Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no key or password is ever pasted. Tokens carry the scopes mcp:tools and mcp:read. Nothing changes on your site without your yes. Every change to a site, a record or a Google account first returns a preview of exactly what it would do, and the change happens only after you approve it in your own next message. Publishing to WordPress tests the connection and shows the exact article before anything reaches your live site, and you can stage it as a WordPress draft instead.
+AEO: check whether AI search and user-fetch crawlers may read your site, read one page the way a crawler does to see whether it answers early enough to be quoted, and build structured data only from facts you supply.
 
-Every result statement comes with n and an interval, or the words "insufficient data", and AdvisorSEO never claims a rank position inside an AI assistant. It never scrapes consumer AI apps.
+GEO: track the prompts buyers ask, record the answers you collect, and report how often they name and cite you with n and an interval, beside the visits and leads AI assistants sent. Check your brand on the sources AI answers cite, and find mentions that do not link to you.
 
-It reads and, on your approval, changes Google Search Console, Google Analytics 4 and Google Tag Manager under your own Google consent, and reads Core Web Vitals from the Chrome UX Report.
+It also plans the ten pages most worth winning and writes a monthly report with a source for every number.
 
-The plugin bundles the AdvisorSEO connector and eleven skills: start-here, ai-readiness-check, site-audit, pages-to-win, approve-and-measure-change, connect-and-import, leads, search-console, analytics-ga4, tag-manager-tracking and core-web-vitals.
+Controls you can audit: sign-in is OAuth 2.1, authorization code with PKCE (S256) and dynamic client registration, so no password is pasted. Tokens carry the scopes mcp:tools and mcp:read. Every change to a site, a record or a Google account first returns a preview, and happens only after you approve it in your own next message. A publish to a live site also needs an owner or admin to approve that exact change in the app.
+
+Every rate comes with n and an interval, or the words "insufficient data". It never claims a rank position inside an AI assistant, and it never scrapes consumer AI apps: AI answers are recorded only when you or your assistant collected them.
+
+Skills: start-here, connect-and-import, site-audit, keyword-research, rank-tracking, pages-to-win, search-console, bing-webmaster, analytics-ga4, tag-manager-tracking, core-web-vitals, ai-readiness-check, answer-ready-pages, ai-visibility, brand-and-mentions, approve-and-measure-change, monthly-report and leads.
 
 ### Use cases
 
@@ -59,13 +63,16 @@ The plugin bundles the AdvisorSEO connector and eleven skills: start-here, ai-re
 5. "Any new leads?" New leads, each lead's history, and status moves with notes.
 6. "Which queries bring clicks?" Search Console queries, pages, sitemaps and URL inspection.
 7. "Audit my GTM container." Tags, triggers and consent checked, with draft fixes on approval.
+8. "Are AI assistants citing us?" Presence and citation rates from collected answers, with n and an interval.
+9. "What moved this week?" Daily Google positions with 7 and 28 day movers.
+10. "Write this month's SEO report." One month of search and AI search results, each number with its source.
 
 ### Data handling answers
 
 | Question | Answer |
 |---|---|
 | What data does the plugin access? | The user's AdvisorSEO workspace: sites, business profile, keywords, plans, content and leads. Public pages of the user's site for audits and crawler checks. Search Console and Analytics only for properties the user connected. Google Search Console, Analytics and Tag Manager for accounts the user connects. |
-| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth (Search Console, Analytics, Tag Manager), Chrome UX Report under AdvisorSEO's API key (public URLs only), Google PageSpeed Insights (public URLs), the user's WordPress site on a confirmed publish. |
+| Where is it sent? | mcp.advisorseo.ai (tool calls), app.advisorseo.ai (sign-in, consent, account), Google APIs under the user's own OAuth (Search Console, Analytics, Tag Manager), Chrome UX Report under AdvisorSEO's API key (public URLs only), Google PageSpeed Insights (public URLs), Bing Webmaster Tools under the user's own key, IndexNow on a confirmed submit and after each approved publish once a key is connected, the user's WordPress site through the AdvisorSEO Connect plugin for AI crawler counts, Google Ads Keyword Planner and a Google results API under AdvisorSEO's own access (keywords only), public pages of other sites the user names, the user's WordPress site on a confirmed publish. |
 | Does the plugin run local code? | No. Skills are text; the connector is remote over https. |
 | Does it write? | Yes, through the tools listed in README.md, including Search Console, Analytics and Tag Manager. Changes preview first and wait for an approval turn; the README names the one that only saves a measurement. |
 | Credentials | OAuth through Claude's credential store. Nothing is pasted into chat. WordPress uses an application password stored on the site record. |
@@ -105,6 +112,8 @@ Not stated in listing copy until confirmed (lead to verify on the deployed conne
 ## Blockers before submit
 
 Why: each of these stops or delays review.
+
+0. Six tools named by four skills are still in open connector pull requests (see README, "Waiting on the connector"). `python3 scripts/check_package.py . --release` fails until `scripts/pending-tools.txt` is empty. Do not submit before it passes. The "Publisher shown" brand and the new display name also need the owner's yes on the day.
 
 1. Repository slug: install lines and the repository URL contain the GitHub organization name, which carries the parent company name. Moving the repo to an AdvisorSEO-named organization would remove it from the listing copy.
 

@@ -3,7 +3,7 @@ name: pages-to-win
 description: Use for choosing what to write or improve, for example "what pages should I create", "what should we write about", "which keywords can we win", "plan my content", "build a content calendar", "turn these keywords into a plan", "where are my content gaps", or "plan three months of posts". Reads the business profile, stored keywords and the existing plan, then proposes at most 10 pages to win, each with a gap type and the metric it should move, and saves the approved ones to the plan.
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # Pages to win
@@ -26,10 +26,11 @@ Why: a short list of pages tied to a gap and a metric gets built and measured. A
 3. `gravity_list_keywords(site_id)`: the stored keywords. If there are none, research them from the profile, then store them with `gravity_add_keywords(site_id, keywords=[...])` (preview, then confirm). Each keyword takes `keyword` and, when known, `search_volume`, `difficulty`, `intent` and `page_type`.
 4. `gravity_list_strategies(site_id)`: what is already planned. Do not propose a page that is already there.
 5. `gravity_list_content(site_id)`: what already exists, to tell a `missing page` from a `weak page`.
-6. Optional: run **ai-readiness-check** or read `gravity_audit_findings` when the gap may be `not crawlable` or `not citable`.
-7. Propose the list as a table: page title, target query, gap type, metric to move, why this one.
-8. After the user approves, `gravity_add_strategies(site_id, items=[...])`. Each item takes `title`, `target_keyword`, `content_type` (`blog_post`, `service_page`, `landing_page` or `faq_page`), `search_intent`, `priority` (1 is highest), `notes` (put the gap type and metric here) and `days_from_now`. Preview, then confirm.
-9. Writing and publishing a page is the job of **approve-and-measure-change**.
+6. `advisorseo_pages_to_win(site_id, limit=10)`: every target keyword with the gap the connector measured (for example `missing_page`, `page_two`, `striking_distance`, `thin_page`, `not_cited_by_ai`), its current position and a why. Use it as evidence for your own list, and map each row to one of the five gap types above. New keywords come from **keyword-research**.
+7. Optional: run **ai-readiness-check** or read `gravity_audit_findings` when the gap may be `not crawlable` or `not citable`.
+8. Propose the list as a table: page title, target query, gap type, metric to move, why this one.
+9. After the user approves, `gravity_add_strategies(site_id, items=[...])`. Each item takes `title`, `target_keyword`, `content_type` (`blog_post`, `service_page`, `landing_page` or `faq_page`), `search_intent`, `priority` (1 is highest), `notes` (put the gap type and metric here) and `days_from_now`. Preview, then confirm.
+10. Writing and publishing a page is the job of **approve-and-measure-change**.
 
 ## Check
 

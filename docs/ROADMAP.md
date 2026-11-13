@@ -9,21 +9,21 @@ Each entry names the user question, the tools it needs, and the gate. Exact tool
 ### search-console-wins
 - Shipped in 0.3.0 as search-console, with analytics-ga4, tag-manager-tracking and core-web-vitals.
 
-### change-proposals
-- Ask: "What would you change this week?", "show me the proposals".
-- Needs: the proposal and job tools (create, list, approve, run status).
-- Output: one proposal per change with preview, approval state and the metric it should move. Folds into approve-and-measure-change when it lands.
-- Gate: proposal approval is enforced server-side, not only in the skill.
+### Shipped in 0.4.0
+- ai-visibility-tracking shipped as ai-visibility. Its data-source gate holds by design: the connector asks no engine anything, and answers are recorded only when a person or the calling assistant collected them.
+- change-proposals shipped inside approve-and-measure-change: a publish that answers `approval_required` goes through `gravity_propose_change`, an approval in the app, and the publish tool with the approval id.
+- llms-txt-and-schema shipped inside answer-ready-pages.
+- New: keyword-research, rank-tracking, answer-ready-pages, brand-and-mentions, bing-webmaster, monthly-report.
 
-### ai-visibility-tracking
-- Ask: "Are AI assistants citing us?", "track our AI visibility".
-- Needs: the AI visibility tools from the connector main branch, backed by sanctioned sources only (official APIs or the user's own data). Never scraping consumer AI apps.
-- Output: citation counts with n plus an interval, or "insufficient data". Never a rank position inside an assistant.
-- Gate: a written data-source review that confirms no consumer app is scraped.
+### Waits for connector pull requests 95 and 96
+- Four skills name six tools from those pull requests ahead of time, listed in `scripts/pending-tools.txt` and in the README. When they merge and deploy, move the names to `scripts/live-tools.txt`, remove the `needs` line and the fallback rule from each skill, and remove the README section.
 
-## v0.2.x candidates (tools already live)
+### Planned in the connector, no skill yet
+- AI answer sentiment and accuracy, unique facts versus competitors, cost-ranked fixes and name, address and phone consistency. They fold into ai-visibility, answer-ready-pages, site-audit and brand-and-mentions when their tools exist.
+- Social post planning (`advisorseo_social`) is on the connector's main branch and has no skill yet.
 
-- llms-txt-and-schema: `gravity_geo_llmstxt_generate`, `gravity_geo_schema_build` and `gravity_geo_brand_footprint` are deployed today. A skill can draft llms.txt and schema for review, then hand placement to approve-and-measure-change. Not shipped in v0.2.0 to keep the first listing small and every skill covered by an eval.
+### Names held for work in progress elsewhere
+- connect-your-site and publish-blog-seo-aeo-geo are being written in another checkout. Do not add skills with those names here.
 
 ## Retired in v0.2.0
 

@@ -3,7 +3,7 @@ name: core-web-vitals
 description: Use for page speed and Core Web Vitals, for example "is my site fast", "check my Core Web Vitals", "why is my LCP slow", "has my page speed improved", "PageSpeed score for this page". Reads real-user field data, its history over time, and lab tests. Not for a full site audit (use site-audit).
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # Core Web Vitals

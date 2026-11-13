@@ -1,6 +1,6 @@
 {
   "name": "advisorseo",
-  "description": "The AdvisorSEO plugin for Claude: get found in Google and in AI assistants, with approval-gated changes and measured results.",
+  "description": "Advisor SEO, AEO, GEO for Claude, by AdvisorSEO: get found in Google, Bing and AI assistants, with approval-gated changes and measured results.",
   "owner": {
     "name": "AdvisorSEO",
     "email": "support@advisorseo.ai",
@@ -9,7 +9,8 @@
   "plugins": [
     {
       "name": "advisorseo",
-      "source": "./"
+      "source": "./",
+      "displayName": "Advisor SEO, AEO, GEO"
     }
   ]
 }

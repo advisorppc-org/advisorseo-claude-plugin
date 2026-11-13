@@ -3,7 +3,7 @@ name: tag-manager-tracking
 description: Use for Google Tag Manager and site tracking, for example "is my tracking set up", "audit my GTM container", "why is my GA4 tag not firing", "add a GA4 tag", "add a conversion tag", "check consent mode", "what changed in GTM", "publish my GTM changes". Reads containers, tags, triggers, variables and versions, and creates or changes them in a draft workspace after approval. Not for reading GA4 reports (use analytics-ga4).
 license: MIT
 metadata:
-  version: 0.3.0
+  version: 0.4.0
 ---
 
 # Tag Manager tracking
